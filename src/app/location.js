@@ -1,32 +1,35 @@
 "use client";
 
 import { useState } from "react";
+import { BASE_URL, API_KEY } from "../weatherApiConfig";
 
 export default function Location() {
-  const [location, setLocation] = useState(null);
-  const [error, setError] = useState(null);
+  const [weather, setWeather] = useState(null);
+  function getCurrentLocation() {
+    return fetch("http://ip-api.com/json/").then((response) => response.json());
+  }
 
-  const getLocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        setLocation({ latitude, longitude });
-      },
-      (error) => {
-        setError(error.message);
-      }
-    );
-  };
-
+  function getWeather() {
+    getCurrentLocation().then((location) => {
+      console.log(location);
+      const { lat, lon } = location;
+      const url = `${BASE_URL}lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          setWeather(data);
+        });
+    });
+  }
   return (
     <div>
-      <button onClick={getLocation}>Fetch Location</button>
-      {location && (
-        <h1>
-          Latitude: {location.latitude}, Longitude: {location.longitude}
-        </h1>
+      <button onClick={getWeather}>Get Current Location</button>
+      {weather && (
+        <div>
+          <h2>Weather Data</h2>
+          <pre>{JSON.stringify(weather["weather"], null, 2)}</pre>
+        </div>
       )}
-      {error && <p>Error: {error}</p>}
     </div>
   );
 }
