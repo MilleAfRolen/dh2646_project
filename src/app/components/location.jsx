@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BASE_URL, API_KEY } from "../weatherApiConfig";
+import { BASE_URL, API_KEY } from "../../weatherApiConfig";
 
 export default function Location() {
   const [weather, setWeather] = useState(null);
@@ -23,7 +23,12 @@ export default function Location() {
   }
   return (
     <div>
-      <button onClick={getWeather}>Get Current Location</button>
+      <button
+        className="border border-solid rounded border-2 bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4"
+        onClick={getWeather}
+      >
+        Get Current Location
+      </button>
       {weather && (
         <div>
           <h2>Weather Data</h2>
