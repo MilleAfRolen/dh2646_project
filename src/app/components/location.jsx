@@ -25,7 +25,6 @@ export default function Location() {
   useEffect(() => {
     fetchWeather();
     const interval = setInterval(fetchWeather, 60000); // Update every minute (60000 milliseconds)
-
     return () => clearInterval(interval); // Clean up the interval on component unmount
   }, []);
 

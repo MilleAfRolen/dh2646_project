@@ -3,7 +3,6 @@ import Navbar from "./components/navbar.jsx";
 import Icon from "./components/icon.jsx";
 import { FaSun } from "react-icons/fa";
 
-// style={background: url('https://loading.io/asset/705455')}
 export default function Home() {
   return (
     <div className="flex flex-col h-screen">
