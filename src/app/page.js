@@ -1,14 +1,16 @@
 import Location from "./components/location.jsx";
 import Navbar from "./components/navbar.jsx";
+import Icon from "./components/icon.jsx";
+import { FaSun } from "react-icons/fa";
 
-// style={background: url('https://loading.io/asset/705455')}
 export default function Home() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen">
       <Navbar />
-      <main>
-        <div className="min-h-screen flex flex-col content-center flex-wrap p-2 justify-center">
-          <h1 className="text-center text-3xl font-bold">Weather App</h1>
+      <main className="flex-grow bg-gradient-radial from-blue-400 to-blue-700 z-0">
+        <Icon icon={<FaSun size="512" color="#FDB813" />} />
+        <div className="h-full flex flex-wrap flex-col items-center justify-center p-2 ">
+          <h1 className="text-center text-6xl font-bold">Weather App</h1>
           <Location />
         </div>
       </main>

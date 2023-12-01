@@ -2,20 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-//make root background color the color of a blue sky
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: #87ceeb;
-  --background-end-rgb: #3498db;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: #87ceeb;
-    --background-end-rgb: #1f2c38;
+@layer components {
+  .icon {
+    @apply flex items-center justify-center h-full w-full absolute -z-10;
   }
-}
-body {
-  background: linear-gradient(to right, #68d391, #4299e1);
 }
