@@ -4,6 +4,6 @@
 
 @layer components {
   .icon {
-    @apply flex items-center justify-center h-full w-full absolute -z-10;
+    @apply flex items-center justify-center h-full w-full absolute;
   }
 }
