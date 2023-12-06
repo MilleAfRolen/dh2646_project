@@ -3,7 +3,7 @@
 import { getWeather } from "./weatherSource";
 import { useState, useEffect } from "react";
 
-export default function weatherModel() {
+export default function WeatherModel() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [currentID, setCurrentID] = useState(-1);
