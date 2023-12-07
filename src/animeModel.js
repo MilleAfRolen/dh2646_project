@@ -7,7 +7,6 @@ const URL = `${BASE_URL}${PATH}`;
 export default function animeModel() {
     const [animeData, setAnimeData] = useState(null);
     const [animeTitle, setAnimeTitle] = useState(null);
-    const [animeImage, setAnimeImage] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -16,7 +15,6 @@ export default function animeModel() {
                 const data = await response.json();
                 setAnimeData(data['data']);
                 setAnimeTitle(data['data'][0]['title']);
-                setAnimeImage(data['data'][0]['images']['jpg']['image_url']);
 
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -25,5 +23,5 @@ export default function animeModel() {
         fetchData();
     }, []);
 
-    return { animeData, animeTitle, animeImage };
+    return { animeData, animeTitle };
 }
