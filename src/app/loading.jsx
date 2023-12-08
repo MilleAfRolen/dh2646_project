@@ -9,6 +9,7 @@ export default function Loading() {
       width={0}
       height={0}
       sizes="100vw"
+      priority={true}
       className="w-full h-full absolute -z-50"
     />
   );

@@ -1,27 +1,26 @@
+"use client";
 import { useState, useEffect } from "react";
-import { BASE_URL } from "@/animeApiConfig";
+import { getAnimeData } from "./animeSource";
 
-const PATH = '/anime?q=&sfw';
-const URL = `${BASE_URL}${PATH}`;
+const PATH = "/anime?q=&sfw";
+// const URL = `${BASE_URL}${PATH}`;
 
 export default function AnimeModel() {
-    const [animeData, setAnimeData] = useState(null);
-    const [animeTitle, setAnimeTitle] = useState(null);
+  const [animeData, setAnimeData] = useState(null);
+  console.log("wtf");
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await fetch(URL);
-                const data = await response.json();
-                setAnimeData(data['data']);
-                setAnimeTitle(data['data'][0]['title']);
+  useEffect(() => {
+    console.log("bruh");
+    async function fetchData() {
+      try {
+        const response = await getAnimeData(PATH);
+        setAnimeData(response["data"]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
+  }, []);
 
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-        fetchData();
-    }, []);
-
-    return { animeData, animeTitle };
+  return { animeData };
 }

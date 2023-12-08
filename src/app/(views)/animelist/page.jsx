@@ -1,12 +1,16 @@
-"use client"
+"use client";
 
-import React from "react";
 import animeModel from "@/animeModel";
+<<<<<<< HEAD
 import Link from "next/link";
+=======
+import Anime from "@/app/(presenters)/animeListPresenter";
+>>>>>>> f5412f8 (Restructured animelist)
 
-export default function AnimeList() {
-    const anime = animeModel();
+export default function () {
+  const anime = animeModel();
 
+<<<<<<< HEAD
     function generatedResultRender(anime, index) {
         return (
             <Link href='/login'>
@@ -33,3 +37,7 @@ export default function AnimeList() {
         </div>
     );
 }
+=======
+  return <Anime animeData={anime.animeData} />;
+}
+>>>>>>> f5412f8 (Restructured animelist)
