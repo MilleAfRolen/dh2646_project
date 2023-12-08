@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WhimsiWeatherAnimeWhiz
 
-## Getting Started
+WhimsiWeatherAnimeWhiz is an interactive web application designed to suggest anime based on real-time weather conditions. At present, the features include loading an unrelated list of anime upon pressing the "Generate" button. Additionally, the login functionality is under development and not yet finalized.
 
-First, run the development server:
+The website is built using [Next.js](https://nextjs.org//) and deployed on [Firebase](https://firebase.google.com/).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**VIEW THE APP [HERE]()**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Progress
+## Things we have done:
+* Implemented the weather API.
+* Implemented the anime API.
+* Finished the basic layout of the website.
+* Finished some of the routing needed for the website.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Things we will do:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+* Finish the login and anime details pages.
+* Implement a way to relate the current weather to a list of anime.
+* Implement a way to save anime in a favourites list.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+# File structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+**Files that are not in the repository due to .gitignore and safety concerns are formatted like this [filename].**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Please note that some files are not listed above due to not being modified by us or being irrelevant to the project**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Setup
+
+To run this project, [Node.js](https://nodejs.org/en/) is required.
+
+## Install dependencies
+
+    npm install
+
+## Run project
+
+    npm run dev
+
+
+## Deploy project
+
+    firebase deploy
+
