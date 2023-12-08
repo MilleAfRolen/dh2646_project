@@ -1,4 +1,7 @@
-import "/src/dishSource.js";
+"use client"
+
+import React from "react";
+import animeModel from "@/animeModel";
 
 export default function AnimeDetailsView(anime){
 
@@ -9,9 +12,8 @@ export default function AnimeDetailsView(anime){
     );
         
     function renderAll(anime){
-        return <div>
+        return ( <div key={anime.title}>
             <img src={anime.large_image_url} height="300" />
-            <p>{anime.title}</p>
         </div>
-    }
+    )}
 };
