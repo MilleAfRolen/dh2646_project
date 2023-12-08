@@ -4,7 +4,7 @@ WhimsiWeatherAnimeWhiz is an interactive web application designed to suggest ani
 
 The website is built using [Next.js](https://nextjs.org//) and deployed on [Firebase](https://firebase.google.com/).
 
-**[LINK TO APP HERE](https://whimsiweatheranimewhiz.web.app)**
+**[LINK TO APP HERE](https://whimsiweatheranimewhiz--test-xqclsibd.web.app)**
 
 # Progress
 
