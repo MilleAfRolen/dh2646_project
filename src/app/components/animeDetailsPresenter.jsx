@@ -2,11 +2,10 @@
 const [animeDetails, setAnimeDetails] = useState(null);
 const [loading, setLoading] = useState(true);
 
-export default function AnimePresenter(){
+export default function AnimeDetailsPresenter(mal_id){
     
   
     useEffect(() => {
-      const mal_id = 1; //idk
       fetchAnimeDetails(mal_id)
         .then((data) => {
           setAnimeDetails(data);
@@ -18,5 +17,9 @@ export default function AnimePresenter(){
         });
     }, []); 
   
-    return <AnimeView animeDetails={animeDetails} loading={loading} />;
+    return (<AnimeView 
+      animeDetails={animeDetails} 
+      loading={loading} />
+      
+      )
   };
