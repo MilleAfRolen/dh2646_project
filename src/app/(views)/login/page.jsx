@@ -1,21 +1,18 @@
-'use client';
-import { useLoginPresenter } from '@/app/(presenters)/loginPresenter.jsx';
+"use client";
+import { useLoginPresenter } from "@/app/(presenters)/loginPresenter.jsx";
 
 export default function Login() {
-    const {
-      username,
-      password,
-      setUsername,
-      setPassword,
-      handleLogin,
-    } = useLoginPresenter();
+  const { username, password, setUsername, setPassword, handleLogin } =
+    useLoginPresenter();
 
   return (
     <div className="flex justify-center items-center h-screen bg-black">
       <form className="bg-gray-700 text-white py-4 px-4 mx-2 rounded">
-        <label htmlFor="username" className="font-bold">Username: </label>
+        <label htmlFor="username" className="font-bold">
+          Username:{" "}
+        </label>
         <input
-          className="py-1 px-1 mx-2 rounded"
+          className="py-1 px-1 mx-2 rounded text-black"
           type="text"
           id="username"
           name="username"
@@ -24,9 +21,11 @@ export default function Login() {
           required
         />
 
-        <label htmlFor="password" className="font-bold">Password:</label>
+        <label htmlFor="password" className="font-bold">
+          Password:
+        </label>
         <input
-          className="py-1 px-1 mx-2 rounded"
+          className="py-1 px-1 mx-2 rounded text-black"
           type="password"
           id="password"
           name="password"
@@ -39,8 +38,8 @@ export default function Login() {
           type="button"
           onClick={handleLogin}
           className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mx-2 rounded"
-          >
-            Login
+        >
+          Login
         </button>
       </form>
     </div>
