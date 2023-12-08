@@ -24,19 +24,15 @@ export default function AnimeListView({ animeData }) {
   }
 
   return (
-    <div>
-      <div className="py-2 px-20 z-10 bg-[#e5e5e5]">
-        <h1 className="text-center text-6xl font-bold pt-18"> Anime List</h1>
-        {animeData ? (
-          <div className="grid grid-cols-4 gap-x-12 gap-y-6 items-start pt-4">
-            {animeData.map((anime, index) =>
-              generatedResultRender(anime, index)
-            )}
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
+    <div className="py-2 px-20 z-10 bg-[#e5e5e5]">
+      <h1 className="text-center text-6xl font-bold pt-18"> Anime List</h1>
+      {animeData ? (
+        <div className="grid grid-cols-4 gap-x-12 gap-y-6 items-start pt-4">
+          {animeData.map((anime, index) => generatedResultRender(anime, index))}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
