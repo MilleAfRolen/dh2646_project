@@ -1,9 +1,7 @@
 "use client";
-import { useLoginPresenter } from "@/app/(presenters)/loginPresenter.jsx";
 
 export default function Login() {
-  const { username, password, setUsername, setPassword, handleLogin } =
-    useLoginPresenter();
+
 
   return (
     <div className="flex justify-center items-center h-screen bg-black">
@@ -16,8 +14,6 @@ export default function Login() {
           type="text"
           id="username"
           name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
           required
         />
 
@@ -29,14 +25,11 @@ export default function Login() {
           type="password"
           id="password"
           name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           required
         />
 
         <button
           type="button"
-          onClick={handleLogin}
           className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mx-2 rounded"
         >
           Login
