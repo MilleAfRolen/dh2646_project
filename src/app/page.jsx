@@ -3,7 +3,7 @@ import Location from "./(presenters)/locationPresenter.jsx";
 import Background from "./(presenters)/backgroundPresenter.jsx";
 import weatherModel from "../weatherModel.js";
 import Image from "next/image";
-import loading from "/public/backgrounds/loadingSun.svg";
+import loading from "/public/icons/loadingSun.svg";
 
 export default function Home() {
   const weather = weatherModel();
