@@ -8,12 +8,12 @@ export default function Navbar() {
         <Link href="/">Weather App</Link>
       </div>
       <div className="flex justify-around">
-        <Link href="/login">
+        <Link href="/signup">
           <button className="bg-[#b8b8ff] hover:bg-[#9381ff] hover:text-white font-bold py-2 px-4 mx-2 rounded">
             Sign Up
           </button>
         </Link>
-        <Link href="/login">
+        <Link href="/signin">
           <button className="bg-[#b8b8ff] hover:bg-[#9381ff] hover:text-white font-bold py-2 px-4 mx-2 rounded">
             Sign In
           </button>
