@@ -2,11 +2,11 @@
 
 import AnimeDetails from "@/app/(presenters)/animeDetailsPresenter";
 
-export default function AnimeDetails() {
+export default function AnimeDetailsPage() {
   const anime = animeModel();
   return (
     <div>
-      <AnimeDetails animeData={anime.animeData}/>
+      <AnimeDetails animeData={anime.animeData} />
     </div>
   );
 }
