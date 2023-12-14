@@ -1,12 +1,15 @@
 
-export default function AnimeDetailsView({ animeData }){
-    console.log(animeData);
+export default function AnimeDetailsView({ id }){
+
+    const PATH = `anime/${id}`
+    const BASE_URL = process.env.NEXT_PUBLIC_ANIME_URL;
+
     function renderAll(anime){
         console.log(anime)
         return ( 
         <div>
             <div className="flex-row">
-            <div>
+            <div>d
                 <img src={anime.large_image_url} height="300" />
             </div>
             

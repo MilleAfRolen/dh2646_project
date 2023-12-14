@@ -1,5 +1,5 @@
 import AnimeDetailsView from "../(views)/animeDetailsView";
 
-export default function AnimeDetails(animeData) {
-  return <AnimeDetailsView animeData={animeData} />;
+export default function AnimeDetails({ id }) {
+  return <AnimeDetailsView id={id} />;
 }

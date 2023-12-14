@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function AnimeListView({ animeData }) {
-  console.log(animeData);
   function generatedResultRender(anime, index) {
     return (
       <div key={index}>
