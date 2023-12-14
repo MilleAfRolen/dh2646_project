@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react";
-import animeModel from "@/animeModel";
 
 export default function AnimeDetailsView({ animeData }){
     console.log(animeData);
