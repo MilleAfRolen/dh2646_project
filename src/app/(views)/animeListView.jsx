@@ -6,7 +6,7 @@ export default function AnimeListView({ animeData }) {
   function generatedResultRender(anime, index) {
     return (
       <div key={index}>
-        <Link href={`/animedetails/${anime["mal_id"]}`}>
+        <Link href={`/animeDetails/${anime["mal_id"]}`}>
           <Image
             className="h-96 w-full object-cover rounded-3xl border border-black shadow-gray-800 shadow-2xl
             transition duration-500 ease-in-out transform hover:scale-105"
