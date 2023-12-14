@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Navbar() {
+export default function NavbarView() {
   return (
     <div className="flex justify-between items-center bg-[#161b33] p-4 fixed w-full z-50">
       <div className="text-white font-bold text-xl">

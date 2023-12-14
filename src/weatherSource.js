@@ -1,5 +1,3 @@
-import { BASE_URL, API_KEY } from "./weatherApiConfig";
-
 async function userLocation() {
   const res = await fetch("http://ip-api.com/json/", {
     next: { revalidate: 600 },
@@ -9,6 +7,8 @@ async function userLocation() {
 }
 
 export async function getWeather() {
+  const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+  const BASE_URL = process.env.NEXT_PUBLIC_WEATHER_URL;
   // await new Promise((resolve) => setTimeout(resolve, 10000));
   const location = await userLocation();
   const { lat, lon } = location;
