@@ -1,12 +1,10 @@
-"use client"
-
-import React from "react";
 
 export default function AnimeDetailsView({ animeData }){
     console.log(animeData);
     function renderAll(anime){
+        console.log(anime)
         return ( 
-        <div className="flex-col">
+        <div>
             <div className="flex-row">
             <div>
                 <img src={anime.large_image_url} height="300" />
@@ -14,7 +12,6 @@ export default function AnimeDetailsView({ animeData }){
             
             <div>
                 <p>{anime.title}</p>
-                <p>{dish.dishData.instructions}</p>
                 <p>Type: {anime.type}</p>
                 <p>Source: {anime.source}</p>
                 <p>Episodes: {anime.episodes}</p>
@@ -33,7 +30,7 @@ export default function AnimeDetailsView({ animeData }){
 
     return(
         <div className="py-2 px-20 z-10 bg-[#e5e5e5]">
-            {renderAll(anime)}
+            {renderAll(animeData)}
         </div>
     );
 };
