@@ -6,34 +6,25 @@ export default function AnimeDetailsView({ animeData }){
         console.log(anime)
         return ( 
         <div>
-            <div className="flex-row">
             <div>
-                <img src={anime.large_image_url} height="300" />
+                <p className="text-2xs font-bold pt-4">{anime.title}</p>
+                <p> <strong>Type:</strong> {anime.type}</p>
+                <p> <strong>Source:</strong> {anime.source}</p>
+                <p> <strong>Episodes:</strong> {anime.episodes}</p>
+                <p> <strong>Status:</strong> {anime.status}</p>
             </div>
-            
-            <div>
-                <p>{anime.title}</p>
-                <p>Type: {anime.type}</p>
-                <p>Source: {anime.source}</p>
-                <p>Episodes: {anime.episodes}</p>
-                <p>Status: {anime.status}</p>
-                <p>Airing: {anime.airing}</p>
-                
-            </div>
-            </div>
-            
-            <div>
+            <div className="my-5">
                 <p>{anime.synopsis}</p>
             </div>
         </div>
             
     )}
 
-    function renderAnimeDetails(anime) {
+    function renderAnimeImage(anime) {
         console.log(anime)
         return (
             <div>
-                <Image
+                <Image className="h-full w-96 object-cover rounded-3xl border border-black my-5"
                   src={anime["images"]["jpg"]["large_image_url"]}
                   height={0}
                   width={0}
@@ -46,8 +37,13 @@ export default function AnimeDetailsView({ animeData }){
     }
 
     return(
-        <div className="py-2 px-20 z-10 bg-[#e5e5e5]">
-            {renderAnimeDetails(animeData)}
+        <div className="py-2 px-20 z-10 bg-[#e5e5e5] flex flex-row">
+            <div>
+                {renderAnimeImage(animeData)}
+            </div>
+            <div className="w-full my-5 mx-5">
+                {renderAll(animeData)}
+            </div>
         </div>
     );
 };
