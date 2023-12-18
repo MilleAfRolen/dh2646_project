@@ -8,22 +8,22 @@ import { useRouter } from 'next/navigation'
 let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const auth = getAuth(firebase_app);
 
-async function createUser(email, password) {
-    let result = null,
-        error = null;
-    try {
-        result = await createUserWithEmailAndPassword(auth, email, password);
-    } catch (e) {
-        error = e;
-    }
+export default function firebaseModel() {
+  async function createUser(email, password) {
+      let result = null,
+          error = null;
+      try {
+          result = await createUserWithEmailAndPassword(auth, email, password);
+      } catch (e) {
+          error = e;
+      }
 
-    return { result, error };
-}
+      return { result, error };
+  }
 
-function signUp() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const router = useRouter()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const router = useRouter();
 
     const handleForm = async (event) => {
         event.preventDefault()
@@ -35,9 +35,9 @@ function signUp() {
         }
 
         // else successful
-        console.log(result)
+        console.log(result);
         return router.push("/")
     }
-}
 
-export default { signUp, auth };
+  return { createUser, setEmail, setPassword, handleForm };
+}

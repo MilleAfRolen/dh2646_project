@@ -1,16 +1,27 @@
 
+export default function SignUpView(props) {
+    console.log(props);
 
-export default function SignUpView({ props }) {
-    console.log("hej" + props);
+    function handleOnSubmitACB(e) {
+        props.handleSubmit(e.target.value);
+    }
+
+    function inputUsernameChangeACB(e) {
+        props.onInputUsernameChange(e.target.value);
+    }
+
+    function inputPasswordChangeACB(e) {
+        props.onInputPasswordChange(e.target.value);
+    }
 
     return (
         <div className="flex justify-center items-center h-screen bg-black">    
-            <form /*onSubmit={handleForm}*/ className="bg-gray-700 text-white py-4 px-4 mx-2 rounded">
+            <form onSubmit={handleOnSubmitACB} className="bg-gray-700 text-white py-4 px-4 mx-2 rounded">
                 <label htmlFor="email" className="font-bold">
                     <p>Email</p>
                     <input
                         className="py-1 px-1 mx-2 rounded text-black"
-                        onChange={(e) => setEmail(e.target.value)} 
+                        onChange={inputUsernameChangeACB} 
                         required type="email" 
                         name="email" 
                         id="email" 
@@ -21,7 +32,7 @@ export default function SignUpView({ props }) {
                     <p>Password</p>
                     <input
                         className="py-1 px-1 mx-2 rounded text-black"
-                        onChange={(e) => setPassword(e.target.value)} 
+                        onChange={inputPasswordChangeACB} 
                         required type="password" 
                         name="password" 
                         id="password" 
