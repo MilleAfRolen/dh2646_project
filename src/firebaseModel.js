@@ -1,14 +1,43 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp, getApps } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import firebaseConfig from "./firebaseConfig.js";
-// TODO: Add SDKs for Firebase products that you want to use
+import { useState} from "react";
+import { useRouter } from 'next/navigation'
 
-// const app = initializeApp(firebaseConfig);
-// const db = getDatabase(app);
-// const auth = getAuth(app);
 
-let firebase_app =
-  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-export default firebase_app;
+let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const auth = getAuth(firebase_app);
+
+async function createUser(email, password) {
+    let result = null,
+        error = null;
+    try {
+        result = await createUserWithEmailAndPassword(auth, email, password);
+    } catch (e) {
+        error = e;
+    }
+
+    return { result, error };
+}
+
+function signUp() {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const router = useRouter()
+
+    const handleForm = async (event) => {
+        event.preventDefault()
+
+        const { result, error } = await createUser(email, password);
+
+        if (error) {
+            return console.log(error)
+        }
+
+        // else successful
+        console.log(result)
+        return router.push("/")
+    }
+}
+
+export default { signUp, auth };

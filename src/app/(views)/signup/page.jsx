@@ -1,34 +1,15 @@
 'use client'
-import { useState} from "react";
-import signUp from "@/app/(presenters)/signupPresenter";
-import { useRouter } from 'next/navigation'
 
-function Signup() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const router = useRouter()
-
-    const handleForm = async (event) => {
-        event.preventDefault()
-
-        const { result, error } = await signUp(email, password);
-
-        if (error) {
-            return console.log(error)
-        }
-
-        // else successful
-        console.log(result)
-        return router.push("/")
-    }
+function SignUp() {
+    console.log("test");
     return (
     <div className="flex justify-center items-center h-screen bg-black">    
-        <form onSubmit={handleForm} className="bg-gray-700 text-white py-4 px-4 mx-2 rounded">
+        <form /*onSubmit={handleForm}*/ className="bg-gray-700 text-white py-4 px-4 mx-2 rounded">
             <label htmlFor="email" className="font-bold">
                 <p>Email</p>
                 <input
                     className="py-1 px-1 mx-2 rounded text-black"
-                    onChange={(e) => setEmail(e.target.value)} 
+                    // onChange={(e) => setEmail(e.target.value)} 
                     required type="email" 
                     name="email" 
                     id="email" 
@@ -39,7 +20,7 @@ function Signup() {
                 <p>Password</p>
                 <input
                     className="py-1 px-1 mx-2 rounded text-black"
-                    onChange={(e) => setPassword(e.target.value)} 
+                    // onChange={(e) => setPassword(e.target.value)} 
                     required type="password" 
                     name="password" 
                     id="password" 
@@ -56,4 +37,4 @@ function Signup() {
     </div>);
 }
 
-export default Signup;
+export default SignUp;
