@@ -30,6 +30,7 @@ export default function AnimeDetails({ id, model }) {
       id={id}
       image={model.animeImage}
       title={model.animeTitle}
+      englishTitle={model.englishTitle}
       type={model.animeType}
       source={model.animeSource}
       episodes={model.animeEpisodes}

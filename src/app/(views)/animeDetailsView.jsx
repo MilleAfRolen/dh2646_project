@@ -5,6 +5,7 @@ export default function AnimeDetailsView({
   id,
   image,
   title,
+  englishTitle,
   type,
   source,
   episodes,
@@ -64,6 +65,7 @@ export default function AnimeDetailsView({
       <div className="flex justify-between items-center w-full pt-4">
         <Link href={`https://myanimelist.net/anime/${id}`}>
           <h1 className="text-4xl font-medium">{title}</h1>
+          <h2 className="text-2xl text-neutral-700">{englishTitle}</h2>
         </Link>
         <Link href={"/animelist"}>
           <button className="button border border-black">back</button>

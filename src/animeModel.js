@@ -20,6 +20,7 @@ export default function AnimeModel() {
   const [animeList, setAnimeList] = useState(null);
   const [animeImage, setAnimeImage] = useState(null);
   const [animeTitle, setAnimeTitle] = useState(null);
+  const [englishTitle, setEnglishTitle] = useState(null);
   const [animeType, setAnimeType] = useState(null);
   const [animeSource, setAnimeSource] = useState(null);
   const [animeEpisodes, setAnimeEpisodes] = useState(null);
@@ -33,12 +34,13 @@ export default function AnimeModel() {
       const data = response["data"];
       setAnimeImage(data["images"]["jpg"]["large_image_url"]);
       setAnimeTitle(data["title"]);
+      setEnglishTitle(data["title_english"]);
       setAnimeType(data["type"]);
       setAnimeSource(data["source"]);
       setAnimeEpisodes(data["episodes"]);
       setAnimeStatus(data["status"]);
       setAnimeDescription(data["synopsis"]);
-      setAnimeGenres(data["genres"][0]["name"])
+      setAnimeGenres(data["genres"][0]["name"]);
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -56,6 +58,7 @@ export default function AnimeModel() {
     animeList,
     animeImage,
     animeTitle,
+    englishTitle,
     animeType,
     animeSource,
     animeEpisodes,
@@ -64,6 +67,5 @@ export default function AnimeModel() {
     animeGenres,
     setAnimeListData,
     setAnimePageData,
-    
   };
 }
