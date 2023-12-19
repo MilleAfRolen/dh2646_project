@@ -2,8 +2,8 @@ import SignInView from "../(views)/signInView";
 
 export default function SignIn(props) {
 
-    function handleSignInACB(x) {
-        props.model.handleSignIn(x);
+    function handleSignInACB() {
+        props.model.handleSignIn();
      }
  
      function handleUsernameChangeACB(x) {

@@ -4,7 +4,8 @@ export default function SignUpView(props) {
 
 
     function handleOnSubmitACB(e) {
-        props.handleSigningUp(e.target.value);
+        e.preventDefault();
+        props.handleSigningUp();
     }
 
     function inputUsernameChangeACB(e) {
@@ -45,14 +46,14 @@ export default function SignUpView(props) {
                 />
 
                 <div className="flex items-center justify-center">
-                    <Link href="/">
+                    {/* <Link href="/"> */}
                         <button
                             type="submit"
                             className="bg-blue-700 hover:bg-blue-900 text-white font-semibold py-2 px-4 mx-2 rounded-md focus:outline-none focus:shadow-outline-blue"
                         >
                             Sign up
                         </button>
-                    </Link>
+                    {/* </Link> */}
                 </div>
             </form>
         </div>

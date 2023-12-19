@@ -2,8 +2,8 @@ import SignUpView from "../(views)/signUpView";
 
 export default function SignUp(props) {
     
-    function handleSignUpACB(x) {
-       props.model.handleSignUp(x);
+    function handleSignUpACB() {
+       props.model.handleSignUp();
     }
 
     function handleUsernameChangeACB(x) {

@@ -3,7 +3,8 @@ import Link from "next/link";
 export default function SignInView(props) {
 
     function handleOnSubmitACB(e) {
-        props.handleSigningIn(e.target.value);
+        e.preventDefault();
+        props.handleSigningIn();
     }
 
     function inputUsernameChangeACB(e) {
@@ -44,14 +45,14 @@ export default function SignInView(props) {
                 />
 
                 <div className="flex items-center justify-center">
-                    <Link href="/">
+                    {/* <Link href="/"> */}
                         <button
                             type="submit"
                             className="bg-blue-700 hover:bg-blue-900 text-white font-semibold py-2 px-4 mx-2 rounded-md focus:outline-none focus:shadow-outline-blue"
                         >
                             Sign in
                         </button>
-                    </Link>
+                    {/* </Link> */}
                 </div>
             </form>
         </div>
