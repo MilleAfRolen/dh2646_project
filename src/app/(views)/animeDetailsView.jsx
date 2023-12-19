@@ -8,6 +8,7 @@ export default function AnimeDetailsView({
   episodes,
   status,
   description,
+  genres,
 }) {
   function renderAll() {
     return (
@@ -35,7 +36,7 @@ export default function AnimeDetailsView({
             </p>
             <p>
               {" "}
-              <strong>Genres:</strong>{" "}
+              <strong>Genres: </strong>{genres}
             </p>
           </div>
           <div className="my-5 border-solid border-black rounded-2xl border-2 py-5 px-5">

@@ -25,6 +25,7 @@ export default function AnimeModel() {
   const [animeEpisodes, setAnimeEpisodes] = useState(null);
   const [animeStatus, setAnimeStatus] = useState(null);
   const [animeDescription, setAnimeDescription] = useState(null);
+  const [animeGenres, setAnimeGenres] = useState(null);
 
   const setAnimePageData = async (PATH) => {
     try {
@@ -37,6 +38,7 @@ export default function AnimeModel() {
       setAnimeEpisodes(data["episodes"]);
       setAnimeStatus(data["status"]);
       setAnimeDescription(data["synopsis"]);
+      setAnimeGenres(data["genres"][0]["name"])
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -59,7 +61,9 @@ export default function AnimeModel() {
     animeEpisodes,
     animeStatus,
     animeDescription,
+    animeGenres,
     setAnimeListData,
     setAnimePageData,
+    
   };
 }
