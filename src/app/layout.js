@@ -2,6 +2,7 @@ import { AnimeModelProvider } from "@/animeModel";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./(views)/navbarView";
+import { WeatherModelProvider } from "@/weatherModel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <main>
           <Navbar />
-          <AnimeModelProvider>{children}</AnimeModelProvider>
+          <AnimeModelProvider>
+            <WeatherModelProvider>{children}</WeatherModelProvider>
+          </AnimeModelProvider>
         </main>
       </body>
     </html>
