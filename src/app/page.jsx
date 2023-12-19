@@ -28,9 +28,12 @@ export default function Home() {
     <div className="h-screen relative pt-18">
       <Background currentWeather={weather.currentWeather} />
       <div className="flex flex-col items-center justify-center h-full">
-        <h1 className="text-center text-6xl font-bold">Weather App</h1>
+        
         <Location weatherData={weather.weatherData} />
       </div>
     </div>
   );
 }
+
+//låg på rad 31
+//<h1 className="text-center text-6xl font-bold">Weather App</h1>
