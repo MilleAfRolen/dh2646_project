@@ -48,5 +48,5 @@ export default function firebaseModel() {
       }
     };
 
-  return { setTheEmail, setThePassword, handleSignUp, handleSignIn, loading, error };
+  return { auth, setTheEmail, setThePassword, handleSignUp, handleSignIn, loading, error };
 }
