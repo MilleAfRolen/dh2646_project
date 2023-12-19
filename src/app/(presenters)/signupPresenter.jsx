@@ -1,28 +1,25 @@
 import SignUpView from "../(views)/signUpView";
 
 export default function SignUp(props) {
-    console.log(props);
     
     function handleSubmitACB(x) {
-       props.handleForm(x);
+       props.model.handleSignUp(x);
     }
 
     function handleUsernameChange(x) {
-        props.setEmail(x);
+        props.model.setTheEmail(x);
     }
 
     function handlePasswordChange(x) {
-        props.setPassword(x);
+        props.model.setThePassword(x);
     }
 
     return (
         <div>
             <SignUpView 
-                // model={props}
                 handleSubmit={handleSubmitACB}
                 onInputUsernameChange={handleUsernameChange}
                 onInputPasswordChange={handlePasswordChange}
-                
             />
         </div>
     );

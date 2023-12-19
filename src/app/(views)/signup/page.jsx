@@ -4,7 +4,7 @@ import SignUp from "@/app/(presenters)/signupPresenter";
 
 export default function SigningUp() {
     const fb = firebaseModel();
-    return <SignUp props={fb} />;
+    return <SignUp model={fb} />;
 }
 
 
