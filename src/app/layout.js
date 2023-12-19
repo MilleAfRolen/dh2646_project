@@ -1,3 +1,4 @@
+import { AnimeModelProvider } from "@/animeModel";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./(views)/navbarView";
@@ -10,12 +11,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  console.log("RootLayout", children);
   return (
     <html lang="en">
       <body className={inter.className}>
         <main>
           <Navbar />
-          {children}
+          <AnimeModelProvider>{children}</AnimeModelProvider>
         </main>
       </body>
     </html>
