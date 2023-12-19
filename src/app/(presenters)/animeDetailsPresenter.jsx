@@ -35,6 +35,7 @@ export default function AnimeDetails({ id, model }) {
         episodes={model.animeEpisodes}
         status={model.animeStatus}
         description={model.animeDescription}
+        genres={model.animeGenres}
       />
     </div>
   );
