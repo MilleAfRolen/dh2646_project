@@ -1,9 +1,10 @@
 "use client";
 
-import animeModel from "@/animeModel";
+import { useContext } from "react";
+import { AnimeModelContext } from "@/animeModel";
 import Anime from "@/app/(presenters)/animeListPresenter";
 
 export default function AnimeListPage() {
-  const anime = animeModel();
-  return <Anime animeData={anime.animeData} />;
+  const model = useContext(AnimeModelContext);
+  return <Anime model={model} />;
 }
