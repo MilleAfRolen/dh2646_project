@@ -26,7 +26,6 @@ export default function AnimeModel() {
   const [animeStatus, setAnimeStatus] = useState(null);
   const [animeDescription, setAnimeDescription] = useState(null);
 
-  console.log(animeList);
   const setAnimePageData = async (PATH) => {
     try {
       const response = await getAnimeData(PATH);
