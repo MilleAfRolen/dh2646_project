@@ -4,8 +4,8 @@ import Link from "next/link";
 export default function NavbarView() {
   return (
     <div className="flex justify-between items-center bg-[#161b33] py-4 px-8 fixed w-full z-50">
-      <div className="text-white font-bold text-xl">
-        <Link href="/">Weather App</Link>
+      <div className="text-white text-2xl">
+        <Link href="/">Whimsi Weather Anime Whiz</Link>
       </div>
       <div className="flex justify-around">
         <Link href="/signup">

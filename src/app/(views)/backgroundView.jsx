@@ -37,7 +37,7 @@ export default function BackgroundView({ weather }) {
           width={0}
           height={0}
           sizes="100vw"
-          className="w-1/2 h-1/2"
+          className="w-4/5 h-4/5"
           priority={true}
         />
       </div>

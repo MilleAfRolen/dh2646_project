@@ -15,7 +15,7 @@ export default function LocationView({ weather, description, temp, humidity }) {
         )}
       </div>
       <Link href="/animelist">
-        <button className="bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 mx-2 rounded">
+        <button className="bg-white border-solid border-black border-2 hover:border-white hover:bg-black hover:text-white font-bold py-2 px-4 mx-2 rounded">
           Generate Content
         </button>
       </Link>
