@@ -16,7 +16,9 @@ export default function AnimeDetailsView({
   function renderAll() {
     return (
       <div className="w-full my-5 ml-5">
-        <div className="border-solid border-black rounded-2xl border-2 py-5 px-5">
+        <h1 className="text-2xl pb-2">Synopsis</h1>
+        <hr className="border-black pb-2" />
+        <div className="border-2">
           <p>{description}</p>
         </div>
       </div>
