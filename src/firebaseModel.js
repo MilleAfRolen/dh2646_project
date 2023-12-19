@@ -1,5 +1,5 @@
 import { initializeApp, getApps } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import firebaseConfig from "./firebaseConfig.js";
 import { useState} from "react";
 
@@ -18,11 +18,21 @@ export default function firebaseModel() {
       setPassword(newPass);
     }
 
-    const handleSignUp = async (event) => {
+    const handleSignUp = async () => {
       try {
         const result = await createUserWithEmailAndPassword(auth, email, password);
         console.log({result})
 
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    const handleSignIn = async () => {
+      try {
+        const result = await signInWithEmailAndPassword(auth, email, password);
+        console.log({result})
+        
       } catch (error) {
         console.log(error)
       }

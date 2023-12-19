@@ -1,10 +1,9 @@
 import Link from "next/link";
 
-export default function SignUpView(props) {
-
+export default function SignInView(props) {
 
     function handleOnSubmitACB(e) {
-        props.handleSigningUp(e.target.value);
+        props.handleSigningIn(e.target.value);
     }
 
     function inputUsernameChangeACB(e) {
@@ -16,7 +15,7 @@ export default function SignUpView(props) {
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-900">    
+        <div className="flex justify-center items-center h-screen bg-gray-900">
             <form onSubmit={handleOnSubmitACB} className="bg-gray-800 text-white py-8 px-6 mx-4 rounded-md">
                 <label htmlFor="email" className="block text-sm font-semibold">
                     Email
@@ -50,7 +49,7 @@ export default function SignUpView(props) {
                             type="submit"
                             className="bg-blue-700 hover:bg-blue-900 text-white font-semibold py-2 px-4 mx-2 rounded-md focus:outline-none focus:shadow-outline-blue"
                         >
-                            Sign up
+                            Sign in
                         </button>
                     </Link>
                 </div>
