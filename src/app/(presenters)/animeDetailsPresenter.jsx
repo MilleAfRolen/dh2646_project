@@ -1,26 +1,41 @@
-"use client"
+"use client";
 import AnimeDetailsView from "../(views)/animeDetailsView";
-import { getAnimeData } from "@/animeSource";
-import { useState } from "react"
+import Image from "next/image";
+import loading from "/public/icons/loadingSun.svg";
+import { useEffect } from "react";
 
-export default function AnimeDetails({ id }) {
-  const [anime, setAnime] = useState(null)
-  const PATH = `/anime/${id}`
-  async function fetchData(path) {
-    const res = await getAnimeData(path)
-    setAnime(res["data"])
+export default function AnimeDetails({ id, model }) {
+  const PATH = `/anime/${id}`;
+  useEffect(() => {
+    model.setAnimePageData(PATH);
+  }, [id]);
+  if (!model.animeTitle) {
+    return (
+      <div className="flex justify-center items-center bg-gradient-radial from-blue-300 to-blue-400 pt-18 h-screen">
+        <Image
+          src={loading}
+          alt="Loading"
+          width={0}
+          height={0}
+          sizes="100vw"
+          priority={true}
+          className="w-1/4 h-1/4 absolute"
+        />
+      </div>
+    );
   }
 
-  fetchData(PATH)
-
-  return (<div className="pt-18">
-
-  {anime ? (
-    <div>
-      <AnimeDetailsView animeData={anime} />
-    </div> )
-    : (<p>Loading...</p>)
-    
-  }
-  </div>);
+  return (
+    <div className="pt-18">
+      <AnimeDetailsView
+        image={model.animeImage}
+        title={model.animeTitle}
+        type={model.animeType}
+        source={model.animeSource}
+        episodes={model.animeEpisodes}
+        status={model.animeStatus}
+        description={model.animeDescription}
+      />
+    </div>
+  );
 }
