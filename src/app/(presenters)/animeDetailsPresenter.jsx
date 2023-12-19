@@ -26,17 +26,16 @@ export default function AnimeDetails({ id, model }) {
   }
 
   return (
-    <div className="pt-18">
-      <AnimeDetailsView
-        image={model.animeImage}
-        title={model.animeTitle}
-        type={model.animeType}
-        source={model.animeSource}
-        episodes={model.animeEpisodes}
-        status={model.animeStatus}
-        description={model.animeDescription}
-        genres={model.animeGenres}
-      />
-    </div>
+    <AnimeDetailsView
+      id={id}
+      image={model.animeImage}
+      title={model.animeTitle}
+      type={model.animeType}
+      source={model.animeSource}
+      episodes={model.animeEpisodes}
+      status={model.animeStatus}
+      description={model.animeDescription}
+      genres={model.animeGenres}
+    />
   );
 }
