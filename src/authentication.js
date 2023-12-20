@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import { createContext, useContext, useState, useEffect } from "react";
 // import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebaseModel";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -18,11 +18,13 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  return <AuthContext.Provider value={{ currentUser }}>{children}</AuthContext.Provider>;
-};
+  return (
+    <AuthContext.Provider value={{ currentUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+const useAuth = () => useContext(AuthContext);
 
-
+export { useAuth, AuthProvider };

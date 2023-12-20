@@ -1,10 +1,11 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import Link from "next/link";
-import { useAuth } from "../../authentication"
-
+import { AuthContext } from "@/authentication.js";
 
 export default function Navbar() {
-  const { currentUser } = useAuth();
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
 
   return (
     <div className="flex justify-between items-center bg-[#161b33] p-4 fixed w-full z-50">
