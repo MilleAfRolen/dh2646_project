@@ -52,6 +52,12 @@ export default function AnimeModel() {
       setAnimeStatus(data["status"]);
       setAnimeDescription(data["synopsis"]);
       setAnimeGenres(data["genres"][0]["name"]);
+      if (data["genres"] && data["genres"].length > 0) {
+        const genres = data["genres"].map(genre => genre.name + ", ");
+        setAnimeGenres(genres);
+      } else {
+        setAnimeGenres([]); 
+      }
     } catch (error) {
       console.log("Error: ", error);
     }
