@@ -30,7 +30,8 @@ export default function AnimeDetailsView({
       <div className="h-full">
         <Link href={`https://myanimelist.net/anime/${id}`}>
           <Image
-            className="h-full w-full object-cover rounded-2xl border border-black my-5"
+            className="h-full w-full object-cover rounded-2xl border border-black my-5 
+            transition duration-500 ease-in-out transform hover:scale-105"
             src={image}
             height={0}
             width={0}
@@ -65,7 +66,10 @@ export default function AnimeDetailsView({
   return (
     <div className="bg-[#e5e5e5] pt-18 px-8 h-screen fixed">
       <div className="flex justify-between items-center w-full pt-4">
-        <Link href={`https://myanimelist.net/anime/${id}`}>
+        <Link
+          href={`https://myanimelist.net/anime/${id}`}
+          className="hover:underline"
+        >
           <h1 className="text-4xl font-medium">{title}</h1>
           <h2 className="text-2xl text-neutral-700">{englishTitle}</h2>
         </Link>
