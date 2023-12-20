@@ -1,10 +1,21 @@
+'use client'
 import { initializeApp, getApps } from "firebase/app";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth } from "firebase/auth";
-import firebaseConfig from "./firebaseConfig.js";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signOut } from "firebase/auth";
 import { useState} from "react";
 
+export const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_MESSAGE_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
+};
+
 let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-const auth = getAuth(firebase_app);
+export const auth = getAuth(firebase_app);
 
 export default function firebaseModel() {
     const [email, setEmail] = useState('');
@@ -28,6 +39,7 @@ export default function firebaseModel() {
 
       } catch (error) {
         console.log("Sign-up error: ", error.message);
+        alert(error.message);
         setError(error.message);
       } finally {
         setLoading(false);
@@ -42,11 +54,16 @@ export default function firebaseModel() {
 
       } catch (error) {
         console.log("Sign-in error: ", error.message);
+        alert(error.message);
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
 
-  return { auth, setTheEmail, setThePassword, handleSignUp, handleSignIn, loading, error };
+    const logout = () => {
+      signOut(auth);
+    };
+
+  return { setTheEmail, setThePassword, handleSignUp, handleSignIn, logout, loading, error };
 }

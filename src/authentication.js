@@ -1,5 +1,7 @@
+'use client'
 import { createContext, useContext, useState, useEffect } from "react";
-import { auth } from "./firebaseModel"; // Assuming you have a firebaseConfig file
+// import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebaseModel";
 
 const AuthContext = createContext();
 
@@ -22,3 +24,5 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   return useContext(AuthContext);
 };
+
+
