@@ -8,8 +8,10 @@ export default function AnimeDetails({ id, model }) {
   const PATH = `/anime/${id}`;
   useEffect(() => {
     model.setAnimePageData(PATH);
+    model.setAnimeRecommendationsData(PATH + "/recommendations");
   }, [id]);
-  if (!model.animeTitle) {
+
+  if (!model.animeTitle || !model.animeRecommendations) {
     return (
       <div className="flex justify-center items-center bg-gradient-radial from-blue-300 to-blue-400 pt-18 h-screen">
         <Image
@@ -37,6 +39,7 @@ export default function AnimeDetails({ id, model }) {
       status={model.animeStatus}
       description={model.animeDescription}
       genres={model.animeGenres}
+      recommendations={model.animeRecommendations}
     />
   );
 }

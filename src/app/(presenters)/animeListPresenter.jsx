@@ -13,7 +13,7 @@ const weatherToGenreMap = {
 
 export default function Anime({ model, weatherModel }) {
   const genre = weatherToGenreMap[weatherModel.currentWeather];
-  const PATH = `/anime?order_by=popularity&genres=${genre}`;
+  const PATH = `/anime?order_by=popularity&genres=${genre}&limit=24`;
   useEffect(() => {
     model.setAnimeListData(PATH);
   }, []);
