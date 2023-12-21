@@ -1,8 +1,9 @@
+import { AnimeModelProvider } from "@/animeModel";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./(views)/navbarView";
 import { AuthProvider } from "../authentication";
-import Navbarr from "@/app/(presenters)/navbarPresenter";
+import { WeatherModelProvider } from "@/weatherModel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,15 +14,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <AuthProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <main>
-            <Navbarr />
-            {children}
-          </main>
-        </body>
-      </html>
-    </AuthProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <AuthProvider>
+        <main>
+          <Navbar />
+          <AnimeModelProvider>
+            <WeatherModelProvider>{children}</WeatherModelProvider>
+          </AnimeModelProvider>
+        </main>
+        </AuthProvider>
+      </body>
   );
 }

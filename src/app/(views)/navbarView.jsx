@@ -4,19 +4,12 @@ import Link from "next/link";
 import { AuthContext } from "@/authentication.js";
 // import { handleSignOut } from "@/firebaseModel";
 
-export default function Navbar(props) {
-  const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
 
-  function handleSignOutACB() { 
-    console.log("HEj från view", props);
-    props.handleSigningOut();
-  }
-
+export default function NavbarView() {
   return (
-    <div className="flex justify-between items-center bg-[#161b33] p-4 fixed w-full z-50">
-      <div className="text-white font-bold text-xl">
-        <Link href="/">Weather App</Link>
+    <div className="flex justify-between items-center bg-[#161b33] py-4 px-8 fixed w-full z-50">
+      <div className="text-white text-2xl">
+        <Link href="/">Whimsi Weather Anime Whiz</Link>
       </div>
       <div className="flex justify-around">
         {!currentUser ? (

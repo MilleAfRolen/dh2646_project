@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 
-export const firebaseConfig = {
+export const firebaseConfig = {  
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,

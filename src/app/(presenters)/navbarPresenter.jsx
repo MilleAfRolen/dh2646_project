@@ -1,18 +1,21 @@
-'use client'
-import Navbar from "../(views)/navbarView";
+"use client";
+import { useState, useEffect } from "react";
+import NavbarView from "../(views)/navbarView";
 
-export default function Navbarr(props) {
+export default function Navbar({ firebaseModel }) {
+  const [user, setUser] = useState(null);
 
-    function handleSignOutACB() {
-        console.log("hej från presenter", props.model);
-        props.model.handleSignOut();
-     }
+  useEffect(() => {
+    const unsubscribe = firebaseModel.auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
 
-    return (
-        <div>
-            <Navbar
-                handleSigningOut={handleSignOutACB}
-            />
-        </div>
-    );
+    return () => unsubscribe();
+  }, [firebaseModel]);
+
+  return <NavbarView firebaseModel={firebaseModel} />;
 }
