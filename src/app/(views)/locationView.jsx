@@ -2,20 +2,26 @@ import Link from "next/link";
 
 export default function LocationView({ weather, description, temp, humidity }) {
   return (
-    <div className="text-center">
-      <div className="my-8">
+    <div className="text-center mt-72 h-screen">
+      <div className="font-mono font-extrabold">
         {weather && (
-          <div className="border-2 rounded-md border-black bg-white p-2">
-            <h3>Main Weather Information</h3>
-            <p>Weather: {weather}</p>
-            <p>Description: {description}</p>
-            <p>Current Temperature: {temp}°C</p>
-            <p>Humidity: {humidity}%</p>
+          <div className="text-7xl">
+              <p>{temp}°C</p>
+          </div>
+        )}
+      </div>
+      <div className="mt-8 mb-4">
+        {weather && (
+          <div className="border-4 rounded-md border-black bg-white p-2 text-sm">
+            <h3> <strong>More Weather Information</strong> </h3>
+            <p> <strong>Weather:</strong>  {weather}</p>
+            <p><strong>Description:</strong> {description}</p>
+            <p><strong>Humidity:</strong> {humidity}%</p>
           </div>
         )}
       </div>
       <Link href="/animelist">
-        <button className="bg-white border-solid border-black border-2 hover:border-white hover:bg-black hover:text-white font-bold py-2 px-4 mx-2 rounded">
+        <button className="hover:bg-white border-solid hover:border-black border-2 border-white bg-black hover:text-black text-white font-bold py-2 px-4 mx-2 rounded">
           Generate Content
         </button>
       </Link>
