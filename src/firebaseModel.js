@@ -1,10 +1,14 @@
-// Import the functions you need from the SDKs you need
+"use client";
 import { initializeApp, getApps } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  getAuth,
+  signOut,
+} from "firebase/auth";
+import { useState } from "react";
 
-const firebaseConfig = {
+export const firebaseConfig = {  
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,
@@ -15,26 +19,77 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
-// const app = initializeApp(firebaseConfig);
-// const db = getDatabase(app);
-// const auth = getAuth(app);
-
 let firebase_app =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-const auth = getAuth(firebase_app);
+export const auth = getAuth(firebase_app);
 
-async function signIn(email, password) {
-  let result = null,
-    error = null;
-  try {
-    console.log("test");
-    result = await signInWithEmailAndPassword(auth, email, password);
-  } catch (e) {
-    error = e;
+export default function firebaseModel() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  function setTheEmail(newEmail) {
+    setEmail(newEmail);
   }
 
-  return { result, error };
-}
+  function setThePassword(newPass) {
+    setPassword(newPass);
+  }
 
-export default firebase_app;
+  const handleSignUp = async () => {
+    try {
+      setLoading(true);
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log({ result });
+    } catch (error) {
+      console.log("Sign-up error: ", error.message);
+      alert(error.message);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSignIn = async () => {
+    try {
+      setLoading(true);
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      console.log({ result });
+    } catch (error) {
+      console.log("Sign-in error: ", error.message);
+      alert(error.message);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  function handleSignOut() {
+    console.log("MODEL");
+    return signOut(auth).then(() => {
+      // Sign-out successful.
+      }).catch((e) => {
+        // An error happened.
+        console.log(e);
+      });
+  }
+  // const handleSignOut = () => {
+  //   signOut(auth);
+  // };
+
+  return {
+    setTheEmail,
+    setThePassword,
+    handleSignUp,
+    handleSignIn,
+    handleSignOut,
+    loading,
+    error,
+  };
+}

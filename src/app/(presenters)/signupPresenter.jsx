@@ -1,18 +1,23 @@
-// Move to model?
+import SignUpView from "../(views)/signUpView";
 
-import firebase_app from "@/firebaseModel";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+export default function SignUp(props) {
+  function handleSignUpACB() {
+    props.model.handleSignUp();
+  }
 
-const auth = getAuth(firebase_app);
+  function handleUsernameChangeACB(x) {
+    props.model.setTheEmail(x);
+  }
 
-export default async function signUp(email, password) {
-    let result = null,
-        error = null;
-    try {
-        result = await createUserWithEmailAndPassword(auth, email, password);
-    } catch (e) {
-        error = e;
-    }
+  function handlePasswordChangeACB(x) {
+    props.model.setThePassword(x);
+  }
 
-    return { result, error };
+  return (
+    <SignUpView
+      handleSigningUp={handleSignUpACB}
+      onInputUsernameChange={handleUsernameChangeACB}
+      onInputPasswordChange={handlePasswordChangeACB}
+    />
+  );
 }
