@@ -6,7 +6,7 @@ import {
   getAuth,
   signOut,
 } from "firebase/auth";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -44,13 +44,17 @@ export default function FirebaseModel() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  function setTheEmail(newEmail) {
+  function handleEmail(newEmail) {
     setEmail(newEmail);
   }
 
-  function setThePassword(newPass) {
+  function handlePassword(newPass) {
     setPassword(newPass);
   }
+
+  useEffect(() => {
+    handleSignIn();
+  }, [email]);
 
   const handleSignUp = async () => {
     try {
@@ -60,7 +64,6 @@ export default function FirebaseModel() {
         email,
         password
       );
-      console.log({ result });
     } catch (error) {
       console.log("Sign-up error: ", error.message);
       alert(error.message);
@@ -72,15 +75,9 @@ export default function FirebaseModel() {
 
   const handleSignIn = async () => {
     try {
-      setLoading(true);
       const result = await signInWithEmailAndPassword(auth, email, password);
-      console.log({ result });
     } catch (error) {
       console.log("Sign-in error: ", error.message);
-      alert(error.message);
-      setError(error.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -99,8 +96,8 @@ export default function FirebaseModel() {
   // };
 
   return {
-    setTheEmail,
-    setThePassword,
+    handleEmail,
+    handlePassword,
     handleSignUp,
     handleSignIn,
     handleSignOut,
