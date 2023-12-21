@@ -11,12 +11,18 @@ const weatherToGenreMap = {
   Clouds: 1,
 };
 
+
 export default function Anime({ model, weatherModel }) {
-  const genre = weatherToGenreMap[weatherModel.currentWeather];
-  const PATH = `/anime?order_by=popularity&genres=${genre}&limit=24`;
   useEffect(() => {
-    model.setAnimeListData(PATH);
-  }, []);
+    const fetchWeather = async () => {
+      await weatherModel.fetchCurrentWeather();
+      const genre = weatherToGenreMap[weatherModel.currentWeather];
+      const PATH = `/anime?order_by=popularity&type=tv&genres=${genre}&limit=24`;
+      model.setAnimeListData(PATH);
+    };
+
+    fetchWeather();
+  }, [weatherModel]);
 
   return <AnimeListView animeData={model.animeList} />;
 }
