@@ -6,9 +6,9 @@ import {
   getAuth,
   signOut,
 } from "firebase/auth";
-import { useState } from "react";
+import { useState, createContext } from "react";
 
-export const firebaseConfig = {  
+export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,
@@ -24,7 +24,21 @@ let firebase_app =
 
 export const auth = getAuth(firebase_app);
 
-export default function firebaseModel() {
+export const FirebaseModelContext = createContext(null);
+
+export function FirebaseModelProvider({ children }) {
+  const firebaseModel = FirebaseModel();
+
+  return (
+    <FirebaseModelContext.Provider value={firebaseModel}>
+      {children}
+    </FirebaseModelContext.Provider>
+  );
+}
+
+export const useFirebaseModel = () => useContext(FirebaseModelContext);
+
+export default function FirebaseModel() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -71,10 +85,11 @@ export default function firebaseModel() {
   };
 
   function handleSignOut() {
-    console.log("MODEL");
-    return signOut(auth).then(() => {
-      // Sign-out successful.
-      }).catch((e) => {
+    return signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((e) => {
         // An error happened.
         console.log(e);
       });

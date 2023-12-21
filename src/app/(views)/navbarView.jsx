@@ -4,8 +4,13 @@ import Link from "next/link";
 import { AuthContext } from "@/authentication.js";
 // import { handleSignOut } from "@/firebaseModel";
 
+export default function NavbarView(props) {
+  const { currentUser } = useContext(AuthContext);
 
-export default function NavbarView() {
+  const handleSignOutACB = () => {
+    props.handleSignOut();
+  };
+
   return (
     <div className="flex justify-between items-center bg-[#161b33] py-4 px-8 fixed w-full z-50">
       <div className="text-white text-2xl">
