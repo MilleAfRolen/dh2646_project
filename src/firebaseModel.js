@@ -70,16 +70,25 @@ export default function firebaseModel() {
     }
   };
 
-  const logout = () => {
-    signOut(auth);
-  };
+  function handleSignOut() {
+    console.log("MODEL");
+    return signOut(auth).then(() => {
+      // Sign-out successful.
+      }).catch((e) => {
+        // An error happened.
+        console.log(e);
+      });
+  }
+  // const handleSignOut = () => {
+  //   signOut(auth);
+  // };
 
   return {
     setTheEmail,
     setThePassword,
     handleSignUp,
     handleSignIn,
-    logout,
+    handleSignOut,
     loading,
     error,
   };

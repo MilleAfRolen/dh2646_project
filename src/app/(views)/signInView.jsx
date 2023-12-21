@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function SignInView(props) {
 
-    function handleOnSubmitACB(e) {
+    function handleOnSubmitACB() {
         e.preventDefault();
         props.handleSigningIn();
     }
