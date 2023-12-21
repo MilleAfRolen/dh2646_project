@@ -1,21 +1,20 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useContext } from "react";
 import NavbarView from "../(views)/navbarView";
+import { FirebaseModelContext } from "@/firebaseModel";
+import { AuthContext } from "@/authentication";
 
-export default function Navbar({ firebaseModel }) {
-  const [user, setUser] = useState(null);
+export default function Navbar() {
+  const firebaseModel = useContext(FirebaseModelContext);
+  const { currentUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    const unsubscribe = firebaseModel.auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
+  const handleSignOutACB = () => {
+    console.log("PRESENTER");
+    firebaseModel.handleSignOut();
+  };
 
-    return () => unsubscribe();
-  }, [firebaseModel]);
-
-  return <NavbarView firebaseModel={firebaseModel} />;
+  return (
+    <NavbarView currentUser={currentUser} handleSignOut={handleSignOutACB} />
+  );
 }
