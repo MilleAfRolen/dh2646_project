@@ -1,8 +1,9 @@
-'use client'
-import firebaseModel from "@/firebaseModel";
-import SignIn from "@/app/(presenters)/signInPresenter";
+"use client";
+import { useContext } from "react";
+import SignIn from "@/app/(presenters)/signinPresenter";
+import { FirebaseModelContext } from "@/firebaseModel";
 
-export default function signingIn() {
-    const fb = firebaseModel();
-    return <SignIn model={fb} />;
+export default function SignInPage() {
+  const firebaseModel = useContext(FirebaseModelContext);
+  return <SignIn model={firebaseModel} />;
 }

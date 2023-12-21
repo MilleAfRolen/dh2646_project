@@ -1,26 +1,11 @@
 import SignInView from "../(views)/signInView";
 
 export default function SignIn(props) {
+  function handleSignInACB(email, password) {
+    console.log("PRESENTER", email, password);
+    props.model.handleEmail(email);
+    props.model.handlePassword(password);
+  }
 
-    function handleSignInACB() {
-        props.model.handleSignIn();
-     }
- 
-     function handleUsernameChangeACB(x) {
-         props.model.setTheEmail(x);
-     }
- 
-     function handlePasswordChangeACB(x) {
-         props.model.setThePassword(x);
-     } 
-
-    return (
-        <div>
-            <SignInView
-                handleSigningIn={handleSignInACB}
-                onInputUsernameChange={handleUsernameChangeACB}
-                onInputPasswordChange={handlePasswordChangeACB}
-            />
-        </div>
-    );
+  return <SignInView handleSigningIn={handleSignInACB} />;
 }

@@ -1,8 +1,7 @@
-'use client'
-import firebaseModel from "@/firebaseModel";
+"use client";
 import SignUp from "@/app/(presenters)/signUpPresenter";
 
 export default function SigningUp() {
-    const fb = firebaseModel();
-    return <SignUp model={fb} />;
+  const firebaseModel = useContext(FirebaseModelContext);
+  return <SignUp model={firebaseModel} />;
 }
