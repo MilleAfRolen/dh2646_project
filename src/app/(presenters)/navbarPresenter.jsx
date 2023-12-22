@@ -7,13 +7,17 @@ import { AuthContext } from "@/authentication";
 
 export default function Navbar() {
   const firebaseModel = useContext(FirebaseModelContext);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, loading } = useContext(AuthContext);
 
   const handleSignOutACB = () => {
     firebaseModel.handleSignOut();
   };
 
   return (
-    <NavbarView currentUser={currentUser} handleSignOut={handleSignOutACB} />
+    <NavbarView
+      currentUser={currentUser}
+      loading={loading}
+      handleSignOut={handleSignOutACB}
+    />
   );
 }

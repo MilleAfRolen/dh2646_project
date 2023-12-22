@@ -2,10 +2,16 @@ import { useRouter } from "next/navigation";
 
 export default function SignInView(props) {
   const router = useRouter();
-  function handleOnSubmitACB(e) {
+  async function handleOnSubmitACB(e) {
     e.preventDefault();
-    props.handleSigningIn(e.target.email.value, e.target.password.value);
-    router.push("/");
+    const success = await props.handleSigningIn(
+      e.target.email.value,
+      e.target.password.value
+    );
+    if (props.error) {
+      router.push("/");
+      return;
+    }
   }
 
   return (

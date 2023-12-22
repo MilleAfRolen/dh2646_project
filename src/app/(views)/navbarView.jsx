@@ -4,11 +4,12 @@ import Link from "next/link";
 import { AuthContext } from "@/authentication.js";
 // import { handleSignOut } from "@/firebaseModel";
 
-export default function NavbarView(props) {
-  const { currentUser } = useContext(AuthContext);
+export default function NavbarView({ currentUser, loading, handleSignOut }) {
+  console.log(currentUser);
+  if (loading) return;
 
   const handleSignOutACB = () => {
-    props.handleSignOut();
+    handleSignOut();
   };
 
   return (
@@ -20,23 +21,19 @@ export default function NavbarView(props) {
         {!currentUser ? (
           <>
             <Link href="/signup">
-              <button className="bg-[#b8b8ff] hover:bg-[#9381ff] hover:text-white font-bold py-2 px-4 mx-2 rounded">
-                Sign Up
-              </button>
+              <button className="button">Sign Up</button>
             </Link>
             <Link href="/signin">
-              <button className="bg-[#b8b8ff] hover:bg-[#9381ff] hover:text-white font-bold py-2 px-4 mx-2 rounded">
-                Sign In
-              </button>
+              <button className="button">Sign In</button>
             </Link>
           </>
         ) : (
-          <button
-            className="bg-[#b8b8ff] hover:bg-[#9381ff] hover:text-white font-bold py-2 px-4 mx-2 rounded"
-            onClick={handleSignOutACB}
-          >
-            Sign Out
-          </button>
+          <div>
+            <button className="button">Watchlist</button>
+            <button className="button" onClick={handleSignOutACB}>
+              Sign Out
+            </button>
+          </div>
         )}
       </div>
     </div>

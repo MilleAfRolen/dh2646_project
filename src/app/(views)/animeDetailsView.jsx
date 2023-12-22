@@ -34,22 +34,21 @@ export default function AnimeDetailsView({
   function renderRecommendations(anime, index) {
     return (
       <Link
+        key={index}
         className="text-center w-36"
         href={`/animeDetails/${anime["entry"]["mal_id"]}`}
       >
-        <span key={index}>
-          <Image
-            className="h-48 w-28 object-cover rounded-2xl border border-black my-2 mx-4
+        <Image
+          className="h-48 w-28 object-cover rounded-2xl border border-black my-2 mx-4
           transition duration-500 ease-in-out transform hover:scale-105"
-            src={anime["entry"]["images"]["jpg"]["large_image_url"]}
-            height={0}
-            width={0}
-            sizes="100vw"
-            priority={true}
-            alt={anime["entry"]["title"]}
-          />
-          {anime["entry"]["title"]}
-        </span>
+          src={anime["entry"]["images"]["jpg"]["large_image_url"]}
+          height={0}
+          width={0}
+          sizes="100vw"
+          priority={true}
+          alt={anime["entry"]["title"]}
+        />
+        {anime["entry"]["title"]}
       </Link>
     );
   }
@@ -92,7 +91,8 @@ export default function AnimeDetailsView({
   //aired. premiered, producors, studio, genre, theme, duration
 
   return (
-    <div className="bg-[#e5e5e5] pt-18 px-8 h-screen fixed">
+    <div className=" pt-18 px-8 h-screen">
+      <div className="bg-[#e5e5e5] h-screen fixed"></div>
       <div className="flex justify-between items-center w-full pt-4">
         <Link
           href={`https://myanimelist.net/anime/${id}`}

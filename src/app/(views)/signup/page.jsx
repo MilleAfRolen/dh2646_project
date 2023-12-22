@@ -1,5 +1,5 @@
 "use client";
-import SignUp from "@/app/(presenters)/signUpPresenter";
+import SignUp from "@/app/(presenters)/signupPresenter";
 import { FirebaseModelContext } from "@/firebaseModel";
 import { useContext } from "react";
 
