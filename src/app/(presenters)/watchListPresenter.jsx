@@ -1,6 +1,10 @@
 "use client";
 import { useEffect } from "react";
+<<<<<<< HEAD
 import WatchListView from "../(views)/watchListView";
+=======
+import WatchListView from "@/app/(views)/watchListView";
+>>>>>>> 73f4894 (test)
 
 export default function WatchList({ firebaseModel, currentUser, animeModel }) {
   function handleRemoveWatchlist(anime) {
