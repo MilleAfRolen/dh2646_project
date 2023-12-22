@@ -10,7 +10,6 @@ export default function Navbar() {
   const { currentUser } = useContext(AuthContext);
 
   const handleSignOutACB = () => {
-    console.log("PRESENTER");
     firebaseModel.handleSignOut();
   };
 
