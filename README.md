@@ -1,26 +1,14 @@
 # WhimsiWeatherAnimeWhiz
 
-WhimsiWeatherAnimeWhiz is an interactive web application designed to suggest anime based on real-time weather conditions. At present, the features include loading an unrelated list of anime upon pressing the "Generate" button. Additionally, the login functionality is under development and not yet finalized.
+WhimsiWeatherAnimeWhiz is an interactive web application designed to suggest anime based on real-time weather conditions. The website features the ability to load a list of anime depending on the current weather, which is displayed on the front page, upon pressing the "Generate" button. The anime listed can be clicked on in order to get a detail-view of the anime with more information and also a list of recomended anime. A user can also sign-in or sign-up in order to save anime to a "watch later"-list.
 
 The website is built using [Next.js](https://nextjs.org//) and deployed on [Firebase](https://firebase.google.com/).
 
 **[LINK TO APP HERE](https://whimsiweatheranimewhiz--test-xqclsibd.web.app)**
-**OBS** Deployment is a bit wonky, you might have to write the routes into the url yourselves (/login, /animelist) etc
 
 # Progress
 
-## Things we have done:
-
-- Implemented the weather API.
-- Implemented the anime API.
-- Finished the basic layout of the website.
-- Finished some of the routing needed for the website.
-
-## Things we will do:
-
-- Finish the login and anime details pages.
-- Implement a way to relate the current weather to a list of anime.
-- Implement a way to save anime in a favourites list.
+--Project finished and deplyed
 
 # File structure
 
@@ -33,19 +21,29 @@ The website is built using [Next.js](https://nextjs.org//) and deployed on [Fire
     │   │   ├── animeListPresenter.jsx
     │   │   ├── backgroundPresenter.jsx
     │   │   ├── locationPresenter.jsx
-    │   │   └── loginPresenter.jsx
+    │   │   ├── navbarPresenter.jsx
+    │   │   ├── signinPresenter.jsx
+    │   │   ├── signoutPresenter.jsx
+    │   │   └── signupPresenter.jsx
     │   ├── (views)/
     │   │   ├── animedetails/
     │   │   │   └── page.jsx
     │   │   ├── animelist/
     │   │   │   └── page.jsx
-    │   │   ├── login/
+    │   │   ├── signin/
+    │   │   │   └── page.jsx
+    │   │   ├── signup/
+    │   │   │   └── page.jsx
+    │   │   ├── watchlist/
     │   │   │   └── page.jsx
     │   │   ├── animeDetailsView.jsx
     │   │   ├── animeListView.jsx
     │   │   ├── backgroundView.jsx
     │   │   ├── locationView.jsx
-    │   │   └── navbarView.jsx
+    │   │   ├── navbarView.jsx
+    │   │   ├── signInView.jsx
+    │   │   ├── signUpView.jsx
+    │   │   └── watchListView.jsx
     │   ├── globals.css
     │   ├── layout.js
     │   ├── loading.jsx
@@ -53,6 +51,7 @@ The website is built using [Next.js](https://nextjs.org//) and deployed on [Fire
     ├── animeApiConfig.js
     ├── animeModel.js
     ├── animeSource.js
+    ├── authentication.js
     ├── firebaseModel.js
     ├── weatherApiConfig.js
     ├── weatherModel.js

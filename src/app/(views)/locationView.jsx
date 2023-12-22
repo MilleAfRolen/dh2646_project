@@ -6,7 +6,7 @@ export default function LocationView({ weather, description, temp, humidity }) {
       <div className="font-mono font-extrabold">
         {weather && (
           <div className="text-7xl">
-              <p>{temp}°C</p>
+              <p>{Math.round(temp)}°C</p>
           </div>
         )}
       </div>
@@ -22,7 +22,7 @@ export default function LocationView({ weather, description, temp, humidity }) {
       </div>
       <Link href="/animelist">
         <button className="hover:bg-white border-solid hover:border-black border-2 border-white bg-black hover:text-black text-white font-bold py-2 px-4 mx-2 rounded">
-          Generate Content
+          Generate Content Anime On Weather!
         </button>
       </Link>
     </div>
