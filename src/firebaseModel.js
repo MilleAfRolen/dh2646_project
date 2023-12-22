@@ -5,6 +5,8 @@ import {
   signInWithEmailAndPassword,
   getAuth,
   signOut,
+  setPersistence,
+  browserLocalPersistence,
 } from "firebase/auth";
 import { useState, createContext, useEffect, useRef } from "react";
 
@@ -83,7 +85,10 @@ export default function FirebaseModel() {
 
   const handleSignIn = async () => {
     try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
+      setPersistence(auth, browserLocalPersistence)
+      .then(async () => {
+        const result = await signInWithEmailAndPassword(auth, email, password);
+      })
     } catch (error) {
       console.log("Sign-in error: ", error.message);
     }
