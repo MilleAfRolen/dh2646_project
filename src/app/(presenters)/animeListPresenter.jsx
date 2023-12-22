@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import AnimeListView from "../(views)/animeListView";
+import WatchListView from "../(views)/watchListView";
 
 const weatherToGenreMap = {
   Thunderstorm: 14,
@@ -24,5 +25,5 @@ export default function Anime({ model, weatherModel }) {
     fetchWeather();
   }, [weatherModel]);
 
-  return <AnimeListView animeData={model.animeList} />;
+  return <div><AnimeListView animeData={model.animeList} /><WatchListView animeData={model.watchList}/></div>
 }
