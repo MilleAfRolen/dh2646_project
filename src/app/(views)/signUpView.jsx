@@ -2,10 +2,15 @@ import { useRouter } from "next/navigation";
 
 export default function SignUpView(props) {
   const router = useRouter();
-  function handleOnSubmitACB(e) {
+  async function handleOnSubmitACB(e) {
     e.preventDefault();
-    props.handleSigningUp(e.target.email.value, e.target.password.value);
-    router.push("/");
+    const success = await props.handleSigningUp(
+      e.target.email.value,
+      e.target.password.value
+    );
+    if (success) {
+      router.push("/");
+    }
   }
 
   return (

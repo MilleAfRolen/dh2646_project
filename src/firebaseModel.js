@@ -6,7 +6,7 @@ import {
   getAuth,
   signOut,
 } from "firebase/auth";
-import { useState, createContext, useEffect, useRef } from "react";
+import { useState, createContext, useEffect } from "react";
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -42,8 +42,7 @@ export default function FirebaseModel() {
   const [email, setEmail] = useState("");
   const [newAccount, setNewAccount] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   function handleEmail(newEmail) {
     setEmail(newEmail);
@@ -70,7 +69,6 @@ export default function FirebaseModel() {
 
   const handleSignUp = async () => {
     try {
-      console.log("hej", newAccount, password);
       const result = await createUserWithEmailAndPassword(
         auth,
         newAccount,
@@ -83,9 +81,32 @@ export default function FirebaseModel() {
 
   const handleSignIn = async () => {
     try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log(user);
+      setError(false);
+      return;
     } catch (error) {
-      console.log("Sign-in error: ", error.message);
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      switch (errorCode) {
+        case "auth/invalid-credential":
+          console.log("Wrong password.");
+          setError("Wrong password.");
+          break;
+        case "auth/user-not-found":
+          console.log("User not found.");
+          setError("User not found.");
+          break;
+        default:
+          console.log(errorMessage);
+          setError("Error.");
+      }
+      setError(true);
     }
   };
 
@@ -110,7 +131,8 @@ export default function FirebaseModel() {
     handleSignUp,
     handleSignIn,
     handleSignOut,
-    loading,
     error,
+    email,
+    password,
   };
 }
