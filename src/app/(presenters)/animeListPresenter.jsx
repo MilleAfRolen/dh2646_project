@@ -1,8 +1,6 @@
 "use client";
 import { useEffect } from "react";
 import AnimeListView from "../(views)/animeListView";
-import WatchListView from "../(views)/watchListView";
-import { saveToWatchlist } from "@/firebaseModel";
 
 const weatherToGenreMap = {
   Thunderstorm: 14,
