@@ -36,30 +36,25 @@ export function FirebaseModelProvider({ children }) {
   );
 }
 
-export async function saveToWatchlist(email, watchlist) {
-  try {
-    await this.db.collection('users').doc(email).set({
-      watchlist,
-    });
-    console.log('Watchlist saved successfully!');
-  } catch (error) {
-    console.error('Error saving watchlist:', error);
-  }
+const { getDatabase } = require('firebase-admin/database');
+
+const db = getDatabase();
+const ref = db.ref('server/saving-data/fireblog');
+
+
+export async function saveToWatchlist(email, anime) {
+  if(model.ready){
+    set(ref(db, PATH), modelToPersistence(m))
+}
+
+}
+
+export async function removeFromWatchlist(email, anime){
+
 }
 
 export async function getWatchlist(email) {
-  try {
-    const userDoc = await this.db.collection('users').doc(email).get();
-    if (userDoc.exists) {
-      return userDoc.data().watchlist || [];
-    } else {
-      console.log('No watchlist found for this user.');
-      return [];
-    }
-  } catch (error) {
-    console.error('Error getting watchlist:', error);
-    return [];
-  }
+
 }
 
 export const useFirebaseModel = () => useContext(FirebaseModelContext);

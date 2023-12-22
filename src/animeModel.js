@@ -75,7 +75,7 @@ export default function AnimeModel() {
   const setWatchListData = async (PATH) => {
     try {
       const response = await getAnimeData(PATH);
-      setAnimeList(response["data"]);
+      setWatchList(response["data"]);
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -96,5 +96,6 @@ export default function AnimeModel() {
     setAnimeRecommendationsData,
     setAnimeListData,
     setAnimePageData,
+    watchList,
   };
 }

@@ -20,10 +20,14 @@ export default function Anime({ model, weatherModel }) {
       const genre = weatherToGenreMap[weatherModel.currentWeather];
       const PATH = `/anime?order_by=popularity&type=tv&genres=${genre}&limit=24`;
       model.setAnimeListData(PATH);
+      model.setWatchListData();
     };
 
     fetchWeather();
   }, [weatherModel]);
 
-  return <div><AnimeListView animeData={model.animeList} /><WatchListView animeData={model.watchList}/></div>
+  return <div>
+    <AnimeListView animeData={model.animeList} />
+    <WatchListView animeData={model.watchList}/>
+    </div>
 }

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
+import {saveToWatchlist} from "@/firebaseModel";
 
 export default function AnimeListView({ animeData }) {
   function generatedResultRender(anime, index) {
     return (
       <div key={index}>
-      <Button className="flex items-center gap-3 text-black pb-3">
+      <Button className="flex items-center gap-3 text-black pb-3" onClick={saveToWatchlist}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
