@@ -7,6 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { useState, createContext, useEffect } from "react";
+import { getDatabase, ref, set, get } from "firebase/database";
 
 export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -22,6 +23,8 @@ export const firebaseConfig = {
 let firebase_app =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
+const db = getDatabase(firebase_app);
+
 export const auth = getAuth(firebase_app);
 
 export const FirebaseModelContext = createContext(null);
@@ -36,32 +39,6 @@ export function FirebaseModelProvider({ children }) {
   );
 }
 
-export async function saveToWatchlist(email, watchlist) {
-  try {
-    await this.db.collection('users').doc(email).set({
-      watchlist,
-    });
-    console.log('Watchlist saved successfully!');
-  } catch (error) {
-    console.error('Error saving watchlist:', error);
-  }
-}
-
-export async function getWatchlist(email) {
-  try {
-    const userDoc = await this.db.collection('users').doc(email).get();
-    if (userDoc.exists) {
-      return userDoc.data().watchlist || [];
-    } else {
-      console.log('No watchlist found for this user.');
-      return [];
-    }
-  } catch (error) {
-    console.error('Error getting watchlist:', error);
-    return [];
-  }
-}
-
 export const useFirebaseModel = () => useContext(FirebaseModelContext);
 
 export default function FirebaseModel() {
@@ -69,6 +46,7 @@ export default function FirebaseModel() {
   const [newAccount, setNewAccount] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [databaseChange, setDatabaseChange] = useState(false);
 
   function handleEmail(newEmail) {
     setEmail(newEmail);
@@ -80,6 +58,52 @@ export default function FirebaseModel() {
 
   function handleNewAccount(newEmail) {
     setNewAccount(newEmail);
+  }
+
+  async function saveToWatchlist(anime, uid) {
+    try {
+      set(ref(db, "users/" + uid + "/watchlist" + "/" + anime["title"]), anime);
+      setDatabaseChange((prevState) => !prevState);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function getWatchlist(uid) {
+    try {
+      const snapshot = await get(ref(db, "users/" + uid + "/watchlist"));
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function isInWatchlist(anime, uid) {
+    try {
+      const snapshot = await get(
+        ref(db, "users/" + uid + "/watchlist" + "/" + anime["title"])
+      );
+      if (snapshot.exists()) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function removeFromWatchlist(anime, uid) {
+    try {
+      set(ref(db, "users/" + uid + "/watchlist" + "/" + anime["title"]), null);
+      setDatabaseChange((prevState) => !prevState);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -157,8 +181,13 @@ export default function FirebaseModel() {
     handleSignUp,
     handleSignIn,
     handleSignOut,
+    saveToWatchlist,
+    getWatchlist,
+    removeFromWatchlist,
+    isInWatchlist,
     error,
     email,
     password,
+    databaseChange,
   };
 }

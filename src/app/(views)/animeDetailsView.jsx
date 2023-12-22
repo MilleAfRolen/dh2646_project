@@ -91,23 +91,25 @@ export default function AnimeDetailsView({
   //aired. premiered, producors, studio, genre, theme, duration
 
   return (
-    <div className=" pt-18 px-8 h-screen">
-      <div className="bg-[#e5e5e5] h-screen fixed"></div>
-      <div className="flex justify-between items-center w-full pt-4">
-        <Link
-          href={`https://myanimelist.net/anime/${id}`}
-          className="hover:underline"
-        >
-          <h1 className="text-4xl font-medium">{title}</h1>
-          <h2 className="text-2xl text-neutral-700">{englishTitle}</h2>
-        </Link>
-        <Link href={"/animelist"}>
-          <button className="button border border-black">back</button>
-        </Link>
-      </div>
-      <div className="flex flex-row">
-        {renderAnimeImage()}
-        {renderAll()}
+    <div>
+      <div className="bg-[#e5e5e5] h-screen w-full fixed -z-50"></div>
+      <div className="pt-18 px-8 h-screen">
+        <div className="flex justify-between items-center w-full pt-4">
+          <Link
+            href={`https://myanimelist.net/anime/${id}`}
+            className="hover:underline"
+          >
+            <h1 className="text-4xl font-medium">{title}</h1>
+            <h2 className="text-2xl text-neutral-700">{englishTitle}</h2>
+          </Link>
+          <Link href={"/animelist"}>
+            <button className="button border border-black">back</button>
+          </Link>
+        </div>
+        <div className="flex flex-row">
+          {renderAnimeImage()}
+          {renderAll()}
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 import { useState, createContext, useContext } from "react";
 import { getAnimeData } from "./animeSource";
+import { set } from "firebase/database";
 
 export const AnimeModelContext = createContext(null);
 
@@ -54,10 +55,10 @@ export default function AnimeModel() {
       setAnimeDescription(data["synopsis"]);
       setAnimeGenres(data["genres"][0]["name"]);
       if (data["genres"] && data["genres"].length > 0) {
-        const genres = data["genres"].map(genre => genre.name + ", ");
+        const genres = data["genres"].map((genre) => genre.name + ", ");
         setAnimeGenres(genres);
       } else {
-        setAnimeGenres([]); 
+        setAnimeGenres([]);
       }
     } catch (error) {
       console.log("Error: ", error);
@@ -72,12 +73,11 @@ export default function AnimeModel() {
     }
   };
 
-  const setWatchListData = async (PATH) => {
+  const setWatchListData = async (animeList) => {
     try {
-      const response = await getAnimeData(PATH);
-      setAnimeList(response["data"]);
+      setWatchList(animeList);
     } catch (error) {
-      console.log("Error: ", error);
+      console.log(error);
     }
   };
 
@@ -93,8 +93,10 @@ export default function AnimeModel() {
     animeDescription,
     animeGenres,
     animeRecommendations,
+    watchList,
     setAnimeRecommendationsData,
     setAnimeListData,
     setAnimePageData,
+    setWatchListData,
   };
 }

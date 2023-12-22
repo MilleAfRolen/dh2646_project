@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import AnimeListView from "../(views)/animeListView";
 import WatchListView from "../(views)/watchListView";
+import { saveToWatchlist } from "@/firebaseModel";
 
 const weatherToGenreMap = {
   Thunderstorm: 14,
@@ -12,8 +13,21 @@ const weatherToGenreMap = {
   Clouds: 1,
 };
 
+export default function Anime({
+  model,
+  weatherModel,
+  firebaseModel,
+  currentUser,
+}) {
+  function handleWatchlist(anime, uid) {
+    firebaseModel.saveToWatchlist(anime, uid);
+  }
 
-export default function Anime({ model, weatherModel }) {
+  async function isInDatabase(anime, uid) {
+    const result = await firebaseModel.isInWatchlist(anime, uid);
+    console.log(result);
+    return result;
+  }
   useEffect(() => {
     const fetchWeather = async () => {
       await weatherModel.fetchCurrentWeather();
@@ -24,6 +38,14 @@ export default function Anime({ model, weatherModel }) {
 
     fetchWeather();
   }, [weatherModel]);
-
-  return <div><AnimeListView animeData={model.animeList} /><WatchListView animeData={model.watchList}/></div>
+  return (
+    <div>
+      <AnimeListView
+        animeData={model.animeList}
+        handleWatchlist={handleWatchlist}
+        currentUser={currentUser}
+        isInDatabase={isInDatabase}
+      />
+    </div>
+  );
 }
