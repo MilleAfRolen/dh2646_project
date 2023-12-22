@@ -28,6 +28,7 @@ export default function AnimeModel() {
   const [animeDescription, setAnimeDescription] = useState(null);
   const [animeGenres, setAnimeGenres] = useState(null);
   const [animeRecommendations, setAnimeRecommendations] = useState(null);
+  const [watchList, setWatchList] = useState(null);
 
   const setAnimeRecommendationsData = async (PATH) => {
     try {
@@ -63,6 +64,15 @@ export default function AnimeModel() {
     }
   };
   const setAnimeListData = async (PATH) => {
+    try {
+      const response = await getAnimeData(PATH);
+      setAnimeList(response["data"]);
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
+
+  const setWatchListData = async (PATH) => {
     try {
       const response = await getAnimeData(PATH);
       setAnimeList(response["data"]);
