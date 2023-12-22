@@ -5,7 +5,6 @@ import { AuthContext } from "@/authentication.js";
 // import { handleSignOut } from "@/firebaseModel";
 
 export default function NavbarView({ currentUser, loading, handleSignOut }) {
-  console.log(currentUser);
   if (loading) return;
 
   const handleSignOutACB = () => {
@@ -29,7 +28,9 @@ export default function NavbarView({ currentUser, loading, handleSignOut }) {
           </>
         ) : (
           <div>
-            <button className="button">Watchlist</button>
+            <Link href="/watchlist">
+              <button className="button">Watchlist</button>
+            </Link>
             <button className="button" onClick={handleSignOutACB}>
               Sign Out
             </button>
