@@ -5,7 +5,7 @@ import { AuthContext } from "@/authentication";
 import { useContext } from "react";
 import { AnimeModelContext } from "@/animeModel";
 
-export default function WatchListPage() {
+export default function WatchlistPage() {
   const model = useContext(FirebaseModelContext);
   const animeModel = useContext(AnimeModelContext);
   const { currentUser } = useContext(AuthContext);
