@@ -1,58 +1,49 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@material-tailwind/react";
 
 export default function AnimeListView({ animeData }) {
-  function watchListRender(anime, index) {
+    function watchListRender(anime, index) {
+        return (
+            <div key={index}>
+                <Button
+                    class="cursor-pointer flex items-center fill-blue-400 bg-blue-950 hover:bg-blue-900 active:border active:border-blue-400 rounded-md duration-100 p-2"
+                    title="Save"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                    </svg>
+
+                    <span class="text-sm text-blue-400 font-bold pr-1">Remove from watchlist</span>
+                </Button>
+
+                <Link href={`/animeDetails/${anime["mal_id"]}`}>
+                    <Image
+                        className="h-96 w-full object-cover rounded-3xl border border-black shadow-gray-800 shadow-2xl
+                        transition duration-500 ease-in-out transform hover:scale-105"
+                        src={anime["images"]["jpg"]["large_image_url"]}
+                        height={0}
+                        width={0}
+                        sizes="100vw"
+                        priority={true}
+                        alt={anime.title}
+                    />
+                    <p className="text-2xs font-bold pt-4 text-center">{anime.title}</p>
+                </Link>
+            </div>
+        );
+    }
+
     return (
-      <div key={index}>
-        <button
-          class="cursor-pointer flex items-center fill-blue-400 bg-blue-950 hover:bg-blue-900 active:border active:border-blue-400 rounded-md duration-100 p-2"
-          title="Save"
-        >
-          <svg
-            width="20px"
-            height="20px"
-            viewBox="0 -0.5 25 25"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M18.507 19.853V6.034C18.5116 5.49905 18.3034 4.98422 17.9283 4.60277C17.5532 4.22131 17.042 4.00449 16.507 4H8.50705C7.9721 4.00449 7.46085 4.22131 7.08577 4.60277C6.7107 4.98422 6.50252 5.49905 6.50705 6.034V19.853C6.45951 20.252 6.65541 20.6407 7.00441 20.8399C7.35342 21.039 7.78773 21.0099 8.10705 20.766L11.907 17.485C12.2496 17.1758 12.7705 17.1758 13.113 17.485L16.9071 20.767C17.2265 21.0111 17.6611 21.0402 18.0102 20.8407C18.3593 20.6413 18.5551 20.2522 18.507 19.853Z"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></path>
-          </svg>
-          <span class="text-sm text-blue-400 font-bold pr-1">Watch later</span>
-        </button>
-
-        <Link href={`/animeDetails/${anime["mal_id"]}`}>
-          <Image
-            className="h-96 w-full object-cover rounded-3xl border border-black shadow-gray-800 shadow-2xl
-            transition duration-500 ease-in-out transform hover:scale-105"
-            src={anime["images"]["jpg"]["large_image_url"]}
-            height={0}
-            width={0}
-            sizes="100vw"
-            priority={true}
-            alt={anime.title}
-          />
-          <p className="text-2xs font-bold pt-4 text-center">{anime.title}</p>
-        </Link>
-      </div>
-    );
-  }
-
-  return (
-    <div className="py-2 px-20 z-10 bg-[#e5e5e5]">
-      <h1 className="text-center text-6xl font-bold pt-18"> Anime List</h1>
-      {animeData ? (
-        <div className="grid grid-cols-4 gap-x-12 gap-y-6 items-start pt-4">
-          {animeData.map((anime, index) => generatedResultRender(anime, index))}
+        <div className="py-2 px-20 z-10 bg-[#e5e5e5]">
+            <h1 className="text-center text-6xl font-bold pt-18"> Your anime watch list</h1>
+            {animeData ? (
+                <div className="grid grid-cols-4 gap-x-12 gap-y-6 items-start pt-4">
+                    {animeData.map((anime, index) => watchListRender(anime, index))}
+                </div>
+            ) : (
+                <p>Loading...</p>
+            )}
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+    );
 }

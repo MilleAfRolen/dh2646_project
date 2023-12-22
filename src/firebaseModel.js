@@ -15,26 +15,41 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
-// const app = initializeApp(firebaseConfig);
-// const db = getDatabase(app);
 // const auth = getAuth(app);
+// const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const rf= ref(db, REF);
 
 let firebase_app =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
 const auth = getAuth(firebase_app);
 
-async function signIn(email, password) {
-  let result = null,
-    error = null;
-  try {
-    console.log("test");
-    result = await signInWithEmailAndPassword(auth, email, password);
-  } catch (e) {
-    error = e;
-  }
 
-  return { result, error };
+async function saveToWatchlist(email, watchlist) {
+  try {
+    await this.db.collection('users').doc(email).set({
+      watchlist,
+    });
+    console.log('Watchlist saved successfully!');
+  } catch (error) {
+    console.error('Error saving watchlist:', error);
+  }
 }
 
-export default firebase_app;
+async function getWatchlist(email) {
+  try {
+    const userDoc = await this.db.collection('users').doc(email).get();
+    if (userDoc.exists) {
+      return userDoc.data().watchlist || [];
+    } else {
+      console.log('No watchlist found for this user.');
+      return [];
+    }
+  } catch (error) {
+    console.error('Error getting watchlist:', error);
+    return [];
+  }
+}
+
+export { firebase_app, saveToWatchlist, getWatchlist };
