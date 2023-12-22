@@ -28,7 +28,7 @@ export default function NavbarView({ currentUser, loading, handleSignOut }) {
           </>
         ) : (
           <div>
-            <Link href="/watchlist">
+            <Link href="/watchList">
               <button className="button">Watchlist</button>
             </Link>
             <button className="button" onClick={handleSignOutACB}>
