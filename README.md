@@ -4,8 +4,7 @@ WhimsiWeatherAnimeWhiz is an interactive web application designed to suggest ani
 
 The website is built using [Next.js](https://nextjs.org//) and deployed on [Vercel](https://vercel.com//).
 
-**[LINK TO APP HERE](https://dh2646-project-hjmql12xb-milles-projects-c6826149.vercel.app/)**
-
+**[LINK TO APP HERE](https://dh2646-project-git-main-milles-projects-c6826149.vercel.app/)**
 # Progress
 
 --Project finished and deployed
