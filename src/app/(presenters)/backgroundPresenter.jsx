@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export default function Background({ model }) {
   useEffect(() => {
     model.fetchCurrentWeather();
-  }, []);
+  }, [model]);
 
   if (!model.currentWeather || !model.weatherData) {
     return (

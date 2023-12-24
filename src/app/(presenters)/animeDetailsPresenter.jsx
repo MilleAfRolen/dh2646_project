@@ -9,7 +9,7 @@ export default function AnimeDetails({ id, model }) {
   useEffect(() => {
     model.setAnimePageData(PATH);
     model.setAnimeRecommendationsData(PATH + "/recommendations");
-  }, [id]);
+  }, [id, PATH, model]);
 
   if (!model.animeTitle || !model.animeRecommendations) {
     return (

@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 export default function NavbarView({ currentUser, loading, handleSignOut }) {
-  if (loading) return;
+  if (loading) return null;
+
   const router = useRouter();
   const handleSignOutACB = () => {
     handleSignOut();
