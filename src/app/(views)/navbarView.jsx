@@ -2,15 +2,15 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 export default function NavbarView({ currentUser, loading, handleSignOut }) {
+  const pathName = usePathname();
+  const router = useRouter();
+
   if (loading) return null;
 
-  const router = useRouter();
   const handleSignOutACB = () => {
     handleSignOut();
     router.push("/");
   };
-
-  const pathName = usePathname();
 
   return (
     <div className="flex justify-between items-center bg-[#161b33] py-4 px-8 fixed w-full z-50">
