@@ -1,8 +1,6 @@
 "use client";
 import { useEffect } from "react";
 import AnimeListView from "../(views)/animeListView";
-import WatchListView from "../(views)/watchListView";
-import { saveToWatchlist } from "@/firebaseModel";
 
 const weatherToGenreMap = {
   Thunderstorm: 14,
@@ -13,39 +11,66 @@ const weatherToGenreMap = {
   Clouds: 1,
 };
 
+const genreIdToGenreMap = {
+  1: "Action",
+  4: "Comedy",
+  8: "Drama",
+  10: "Fantasy",
+  14: "Horror",
+  22: "Romance",
+};
+
 export default function Anime({
   model,
   weatherModel,
   firebaseModel,
   currentUser,
 }) {
-  function handleWatchlist(anime, uid) {
-    firebaseModel.saveToWatchlist(anime, uid);
-  }
+  const handleSaveToWatchlist = async (anime, uid) => {
+    if (await firebaseModel.checkIfAnimeInWatchlist(anime, uid)) {
+      await firebaseModel.removeFromWatchlist(anime, uid);
+      return;
+    }
+    await firebaseModel.saveToWatchlist(anime, uid);
+  };
 
-  async function isInDatabase(anime, uid) {
-    const result = await firebaseModel.isInWatchlist(anime, uid);
-    console.log(result);
-    return result;
-  }
   useEffect(() => {
-    const fetchWeather = async () => {
-      await weatherModel.fetchCurrentWeather();
-      const genre = weatherToGenreMap[weatherModel.currentWeather];
-      const PATH = `/anime?order_by=popularity&type=tv&genres=${genre}&limit=24`;
-      model.setAnimeListData(PATH);
+    const fetchWatchList = async () => {
+      try {
+        const result = await firebaseModel.getWatchlist(currentUser.uid);
+        model.setWatchListData(result);
+      } catch (error) {
+        console.log(error);
+      }
     };
+    if (currentUser !== null) {
+      fetchWatchList();
+    }
+  }, [currentUser, firebaseModel]);
 
-    fetchWeather();
+  useEffect(() => {
+    const fetchAnimeList = async () => {
+      try {
+        await weatherModel.fetchCurrentWeather();
+        const genre = weatherToGenreMap[weatherModel.currentWeather];
+        const PATH = `/anime?order_by=popularity&min_score=4&genres=${genre}&limit=24`;
+        await model.setAnimeListData(PATH);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAnimeList();
   }, [weatherModel]);
+
+  if (!model.animeList) return;
+
   return (
-    <div>
-      <AnimeListView
-        animeData={model.animeList}
-        handleWatchlist={handleWatchlist}
-        currentUser={currentUser}
-        isInDatabase={isInDatabase}
-      />
-    </div>
+    <AnimeListView
+      animeData={model.animeList}
+      saveToWatchlist={handleSaveToWatchlist}
+      currentUser={currentUser}
+      watchlist={model.watchList}
+      genre={genreIdToGenreMap[weatherToGenreMap[weatherModel.currentWeather]]}
+    />
   );
 }

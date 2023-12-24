@@ -1,49 +1,18 @@
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebaseModel";
+import { auth, useFirebaseModel } from "./firebaseModel";
 
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
 
-  // const handleSignIn = async () => {
-  //   try {
-  //     const userCredential = await signInWithEmailAndPassword(
-  //       auth,
-  //       email,
-  //       password
-  //     );
-  //     const user = userCredential.user;
-  //     console.log(user);
-  //     setError(false);
-  //     return;
-  //   } catch (error) {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //     switch (errorCode) {
-  //       case "auth/invalid-credential":
-  //         console.log("Wrong password.");
-  //         setError("Wrong password.");
-  //         break;
-  //       case "auth/user-not-found":
-  //         console.log("User not found.");
-  //         setError("User not found.");
-  //         break;
-  //       default:
-  //         console.log(errorMessage);
-  //         setError("Error.");
-  //     }
-  //     setError(true);
-  //   }
-  // };
+  const { signIn, signUp, signOut } = useFirebaseModel();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("user", user);
       setCurrentUser(user);
       setLoading(false);
     });
@@ -51,11 +20,49 @@ function AuthProvider({ children }) {
     return () => unsubscribe();
   }, [currentUser]);
 
-  return (
-    <AuthContext.Provider value={{ currentUser, loading }}>
-      {children}
-    </AuthContext.Provider>
+  const handleSignIn = async (email, password) => {
+    setLoading(true);
+    try {
+      await signIn(email, password);
+    } catch (error) {
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSignUp = async (email, password) => {
+    setLoading(true);
+    try {
+      await signUp(email, password);
+    } catch (error) {
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSignOut = async () => {
+    setLoading(true);
+    try {
+      await signOut();
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  };
+  const value = useMemo(
+    () => ({
+      currentUser,
+      loading,
+      handleSignIn,
+      handleSignUp,
+      handleSignOut,
+    }),
+    [currentUser, loading]
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 const useAuth = () => useContext(AuthContext);

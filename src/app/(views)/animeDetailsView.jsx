@@ -36,7 +36,7 @@ export default function AnimeDetailsView({
       <Link
         key={index}
         className="text-center w-36"
-        href={`/animeDetails/${anime["entry"]["mal_id"]}`}
+        href={`/animedetails/${anime["entry"]["mal_id"]}`}
       >
         <Image
           className="h-48 w-28 object-cover rounded-2xl border border-black my-2 mx-4
@@ -91,7 +91,7 @@ export default function AnimeDetailsView({
   //aired. premiered, producors, studio, genre, theme, duration
 
   return (
-    <div>
+    <>
       <div className="bg-[#e5e5e5] h-screen w-full fixed -z-50"></div>
       <div className="pt-18 px-8 h-screen">
         <div className="flex justify-between items-center w-full pt-4">
@@ -111,6 +111,6 @@ export default function AnimeDetailsView({
           {renderAll()}
         </div>
       </div>
-    </div>
+    </>
   );
 }

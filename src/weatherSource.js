@@ -1,4 +1,4 @@
-async function userLocation() {
+export async function userLocation() {
   const res = await fetch(process.env.NEXT_PUBLIC_IP_URL, {
     next: { revalidate: 600 },
   });

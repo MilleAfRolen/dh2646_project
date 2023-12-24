@@ -1,16 +1,13 @@
 "use client";
-import { useEffect } from "react";
-import { useContext } from "react";
+
 import NavbarView from "../(views)/navbarView";
-import { FirebaseModelContext } from "@/firebaseModel";
-import { AuthContext } from "@/authentication";
+import { useAuth } from "@/authentication";
 
 export default function Navbar() {
-  const firebaseModel = useContext(FirebaseModelContext);
-  const { currentUser, loading } = useContext(AuthContext);
+  const { handleSignOut, currentUser, loading } = useAuth();
 
   const handleSignOutACB = () => {
-    firebaseModel.handleSignOut();
+    handleSignOut();
   };
 
   return (

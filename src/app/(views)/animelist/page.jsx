@@ -1,17 +1,16 @@
 "use client";
 
-import { useContext } from "react";
-import { AnimeModelContext } from "@/animeModel";
-import { WeatherModelContext } from "@/weatherModel";
-import { FirebaseModelContext } from "@/firebaseModel";
-import { AuthContext } from "@/authentication";
+import { useAnimeModel } from "@/animeModel";
+import { useWeatherModel } from "@/weatherModel";
+import { useFirebaseModel } from "@/firebaseModel";
+import { useAuth } from "@/authentication";
 import Anime from "@/app/(presenters)/animeListPresenter";
 
 export default function AnimeListPage() {
-  const model = useContext(AnimeModelContext);
-  const weatherModel = useContext(WeatherModelContext);
-  const firebaseModel = useContext(FirebaseModelContext);
-  const { currentUser } = useContext(AuthContext);
+  const model = useAnimeModel();
+  const weatherModel = useWeatherModel();
+  const firebaseModel = useFirebaseModel();
+  const { currentUser } = useAuth();
   return (
     <Anime
       model={model}

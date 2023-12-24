@@ -4,7 +4,8 @@ import "./globals.css";
 import Navbar from "./(presenters)/navbarPresenter";
 import { AuthProvider } from "../authentication";
 import { WeatherModelProvider } from "@/weatherModel";
-import { FirebaseModelContext, FirebaseModelProvider } from "@/firebaseModel";
+import { FirebaseModelProvider } from "@/firebaseModel";
+import { ThemeProvider } from "../materialTailwind";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,16 +18,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <FirebaseModelProvider>
+        <FirebaseModelProvider>
+          <AuthProvider>
             <main>
               <Navbar />
               <AnimeModelProvider>
-                <WeatherModelProvider>{children}</WeatherModelProvider>
+                <ThemeProvider>
+                  <WeatherModelProvider>{children}</WeatherModelProvider>
+                </ThemeProvider>
               </AnimeModelProvider>
             </main>
-          </FirebaseModelProvider>
-        </AuthProvider>
+          </AuthProvider>
+        </FirebaseModelProvider>
       </body>
     </html>
   );

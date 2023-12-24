@@ -3,23 +3,31 @@ import { useEffect } from "react";
 import WatchListView from "@/app/(views)/watchListView";
 
 export default function WatchList({ firebaseModel, currentUser, animeModel }) {
-  function handleRemoveWatchlist(anime) {
-    firebaseModel.removeFromWatchlist(anime, currentUser.uid);
-  }
+  const handleRemoveWatchlist = async (anime, uid) => {
+    if (await firebaseModel.checkIfAnimeInWatchlist(anime, uid)) {
+      await firebaseModel.removeFromWatchlist(anime, uid);
+    }
+  };
+
   useEffect(() => {
     const fetchWatchList = async () => {
-      const result = await firebaseModel.getWatchlist(currentUser.uid);
-      animeModel.setWatchListData(Object.values(result));
+      try {
+        const result = await firebaseModel.getWatchlist(currentUser.uid);
+        animeModel.setWatchListData(result);
+      } catch (error) {
+        console.log(error);
+      }
     };
     if (currentUser !== null) {
       fetchWatchList();
     }
-  }, [currentUser, firebaseModel.databaseChange, animeModel.watchList]);
+  }, [currentUser, firebaseModel]);
 
   return (
     <WatchListView
-      animeData={animeModel.watchList}
+      watchlist={animeModel.watchList}
       handleRemoveWatchlist={handleRemoveWatchlist}
+      currentUser={currentUser}
     />
   );
 }

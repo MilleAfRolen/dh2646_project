@@ -29,7 +29,7 @@ export default function AnimeModel() {
   const [animeDescription, setAnimeDescription] = useState(null);
   const [animeGenres, setAnimeGenres] = useState(null);
   const [animeRecommendations, setAnimeRecommendations] = useState(null);
-  const [watchList, setWatchList] = useState(null);
+  const [watchList, setWatchList] = useState([]);
 
   const setAnimeRecommendationsData = async (PATH) => {
     try {
@@ -55,10 +55,10 @@ export default function AnimeModel() {
       setAnimeDescription(data["synopsis"]);
       setAnimeGenres(data["genres"][0]["name"]);
       if (data["genres"] && data["genres"].length > 0) {
-        const genres = data["genres"].map((genre) => genre.name + ", ");
+        const genres = data["genres"].map((genre) => genre.name).join(", ");
         setAnimeGenres(genres);
       } else {
-        setAnimeGenres([]);
+        setAnimeGenres("");
       }
     } catch (error) {
       console.log("Error: ", error);
@@ -70,6 +70,7 @@ export default function AnimeModel() {
       setAnimeList(response["data"]);
     } catch (error) {
       console.log("Error: ", error);
+      throw error;
     }
   };
 

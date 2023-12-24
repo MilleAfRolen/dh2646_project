@@ -1,14 +1,13 @@
 "use client";
 import WatchList from "@/app/(presenters)/watchListPresenter";
-import { FirebaseModelContext } from "@/firebaseModel";
-import { AuthContext } from "@/authentication";
-import { useContext } from "react";
-import { AnimeModelContext } from "@/animeModel";
+import { useFirebaseModel } from "@/firebaseModel";
+import { useAuth } from "@/authentication";
+import { useAnimeModel } from "@/animeModel";
 
 export default function WatchlistPage() {
-  const model = useContext(FirebaseModelContext);
-  const animeModel = useContext(AnimeModelContext);
-  const { currentUser } = useContext(AuthContext);
+  const model = useFirebaseModel();
+  const animeModel = useAnimeModel();
+  const { currentUser } = useAuth();
 
   return (
     <WatchList

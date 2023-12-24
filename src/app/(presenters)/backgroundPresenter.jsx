@@ -12,7 +12,7 @@ export default function Background({ model }) {
   if (!model.currentWeather || !model.weatherData) {
     return (
       <div className="bg-gradient-radial from-blue-300 to-blue-400 pt-18 h-screen w-full fixed top-0 left-0 -z-50">
-        <div className="flex flex-col items-center justify-center h-full">
+        <div className="flex items-center justify-center h-full">
           <Image
             src={loading}
             alt="Loading"
@@ -27,9 +27,5 @@ export default function Background({ model }) {
     );
   }
 
-  return (
-    <div>
-      <BackgroundView weather={model.currentWeather} />
-    </div>
-  );
+  return <BackgroundView image={model.image} />;
 }
